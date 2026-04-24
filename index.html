@@ -3,1425 +3,1975 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NIOS Math 311 — PYQ Master Guide</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=IBM+Plex+Mono:wght@400;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>NIOS Math 311 — Exam Question Bank</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0c0d10;--bg2:#13141a;--bg3:#1c1d26;--border:#252630;--text:#dde0ef;--muted:#5c5f73;
-  --gold:#e8b84b;--gold2:#b8891a;
-  --mcq:#38bdf8;--theory:#c084fc;--num:#fb923c;--long:#34d399;
-  --r:#f87171;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.7;}
+  :root {
+    --bg: #0f1117;
+    --surface: #181c27;
+    --surface2: #1e2335;
+    --border: #2a2f45;
+    --text: #e8e4d9;
+    --muted: #8a8fa8;
+    --gold: #f0b429;
+    --gold-dim: #c49020;
+    --green: #4caf82;
+    --blue: #5b8dee;
+    --red: #e05c5c;
+    --purple: #b07ee8;
+    --accent: #f0b429;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-y: scroll;
+  }
 
-/* ── HEADER ── */
-.hdr{
-  background:var(--bg2);border-bottom:1px solid var(--border);
-  padding:40px 24px 32px;text-align:center;position:relative;overflow:hidden;
-}
-.hdr::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(232,184,75,.14) 0%,transparent 70%);
-  pointer-events:none;
-}
-.hdr-kicker{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;}
-.hdr h1{font-family:'Syne',sans-serif;font-size:clamp(30px,6vw,58px);font-weight:800;line-height:1.05;color:#fff;margin-bottom:10px;}
-.hdr h1 em{color:var(--gold);font-style:normal;}
-.hdr-sub{color:var(--muted);font-size:13px;max-width:520px;margin:0 auto 18px;}
-.pill-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:4px;}
-.pill{padding:3px 12px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:1.2px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;}
-.pill.mcq{background:rgba(56,189,248,.12);color:var(--mcq);border:1px solid rgba(56,189,248,.25);}
-.pill.theory{background:rgba(192,132,252,.12);color:var(--theory);border:1px solid rgba(192,132,252,.25);}
-.pill.num{background:rgba(251,146,60,.12);color:var(--num);border:1px solid rgba(251,146,60,.25);}
-.pill.long{background:rgba(52,211,153,.12);color:var(--long);border:1px solid rgba(52,211,153,.25);}
-.pill.rep{background:rgba(248,113,113,.12);color:var(--r);border:1px solid rgba(248,113,113,.25);}
+  /* ── SIDEBAR ── */
+  #sidebar {
+    width: 260px;
+    min-height: 100vh;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0; left: 0;
+    overflow-y: auto;
+    z-index: 100;
+    padding-bottom: 40px;
+  }
+  #sidebar::-webkit-scrollbar { width: 4px; }
+  #sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .sidebar-header {
+    padding: 22px 18px 16px;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0;
+    background: var(--surface);
+    z-index: 2;
+  }
+  .sidebar-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    letter-spacing: 0.03em;
+  }
+  .sidebar-header p {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 4px;
+  }
+  .score-badge {
+    margin-top: 10px;
+    background: linear-gradient(135deg, #1a2a00, #2a4400);
+    border: 1px solid #4a7a00;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.72rem;
+    color: #8fcc44;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .nav-section { padding: 10px 0; }
+  .nav-section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 8px 18px 4px;
+  }
+  .nav-link {
+    display: block;
+    padding: 6px 18px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+    line-height: 1.4;
+  }
+  .nav-link:hover { color: var(--gold); border-left-color: var(--gold); background: rgba(240,180,41,0.05); }
+  .nav-link.active { color: var(--gold); border-left-color: var(--gold); }
 
-/* ── NAV ── */
-.nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(12,13,16,.97);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-  overflow-x:auto;white-space:nowrap;padding:0 8px;
-}
-.nav::-webkit-scrollbar{height:2px;}
-.nav::-webkit-scrollbar-thumb{background:var(--gold2);}
-.nav-inner{display:inline-flex;}
-.nav-inner a{
-  display:inline-block;padding:11px 14px;color:var(--muted);text-decoration:none;
-  font-size:11.5px;font-weight:500;border-bottom:2px solid transparent;
-  transition:all .15s;white-space:nowrap;letter-spacing:.3px;
-}
-.nav-inner a:hover{color:var(--gold);border-bottom-color:var(--gold2);}
+  /* ── MAIN ── */
+  #main {
+    margin-left: 260px;
+    flex: 1;
+    padding: 0 0 80px;
+  }
+  .hero {
+    background: linear-gradient(135deg, #0f1117 0%, #141926 50%, #0f1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 56px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '∑∫∂∇';
+    position: absolute; right: 56px; top: 20px;
+    font-size: 7rem;
+    color: rgba(240,180,41,0.04);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: var(--gold);
+    line-height: 1.2;
+  }
+  .hero p { color: var(--muted); margin-top: 10px; font-size: 0.95rem; max-width: 520px; }
+  .legend {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 0.78rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--muted);
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; }
 
-/* ── WEIGHT BAR ── */
-.wbar{
-  display:flex;gap:6px;flex-wrap:wrap;justify-content:center;
-  max-width:900px;margin:24px auto;padding:0 16px;
-}
-.wchip{
-  background:var(--bg2);border:1px solid var(--border);border-radius:8px;
-  padding:10px 14px;text-align:center;min-width:90px;
-}
-.wchip .v{font-family:'Syne',sans-serif;font-size:20px;color:var(--gold);font-weight:800;line-height:1;}
-.wchip .l{font-size:9px;color:var(--muted);margin-top:3px;letter-spacing:.8px;text-transform:uppercase;}
+  /* ── CHAPTER ── */
+  .chapter {
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+  }
+  .chapter-header {
+    padding: 32px 56px 20px;
+    background: linear-gradient(90deg, rgba(30,35,53,0.8), transparent);
+    border-left: 3px solid var(--gold);
+    margin-bottom: 8px;
+  }
+  .chapter-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--text);
+    margin-top: 4px;
+  }
+  .chapter-meta {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 6px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .questions-grid { padding: 4px 56px 32px; }
 
-/* ── MAIN ── */
-.wrap{max-width:900px;margin:0 auto;padding:0 16px 80px;}
+  /* ── QUESTION CARD ── */
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 18px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .q-card:hover { border-color: rgba(240,180,41,0.3); }
+  .q-card.hot {
+    border-color: rgba(240,180,41,0.5);
+    box-shadow: 0 0 0 1px rgba(240,180,41,0.1), inset 0 0 30px rgba(240,180,41,0.02);
+  }
+  .q-header {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 18px 0;
+    cursor: pointer;
+    user-select: none;
+  }
+  .q-type-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-mcq    { background: rgba(91,141,238,0.15); color: var(--blue); border: 1px solid rgba(91,141,238,0.3); }
+  .badge-long   { background: rgba(180,126,232,0.15); color: var(--purple); border: 1px solid rgba(180,126,232,0.3); }
+  .badge-num    { background: rgba(76,175,130,0.15); color: var(--green); border: 1px solid rgba(76,175,130,0.3); }
+  .badge-theory { background: rgba(224,92,92,0.15); color: var(--red); border: 1px solid rgba(224,92,92,0.3); }
+  .hot-star {
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+    filter: drop-shadow(0 0 4px rgba(240,180,41,0.6));
+  }
+  .q-text {
+    flex: 1;
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.6;
+    padding-bottom: 14px;
+  }
+  .q-marks {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 7px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .q-toggle {
+    font-size: 0.75rem;
+    color: var(--gold);
+    font-family: 'JetBrains Mono', monospace;
+    padding: 0 18px 12px;
+    cursor: pointer;
+    display: inline-block;
+    opacity: 0.8;
+  }
+  .q-toggle:hover { opacity: 1; }
 
-/* ── TOPIC ── */
-.topic{margin-top:44px;}
-.topic-hdr{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:2px solid var(--border);margin-bottom:18px;}
-.t-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:3px 7px;}
-.topic-hdr h2{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#fff;flex:1;}
-.t-marks{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);background:rgba(232,184,75,.08);border:1px solid rgba(232,184,75,.2);border-radius:5px;padding:3px 9px;}
+  /* ── MCQ options ── */
+  .mcq-options {
+    padding: 0 18px 10px 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .mcq-opt {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .mcq-opt.correct {
+    border-color: rgba(76,175,130,0.5);
+    background: rgba(76,175,130,0.08);
+    color: var(--green);
+  }
 
-/* formula banner under topic heading */
-.formula-banner{
-  background:var(--bg3);border:1px solid var(--border);border-radius:8px;
-  padding:10px 14px;margin-bottom:16px;
-  font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8090b8;line-height:1.7;
-}
+  /* ── ANSWER ── */
+  .q-answer {
+    display: none;
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    padding: 18px 18px 18px;
+  }
+  .q-answer.show { display: block; }
+  .answer-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .answer-text {
+    font-size: 0.92rem;
+    color: #c8c4bc;
+    line-height: 1.75;
+  }
+  .answer-text .step {
+    display: flex; gap: 12px;
+    margin-bottom: 10px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    border-left: 2px solid var(--gold-dim);
+  }
+  .step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold-dim);
+    min-width: 22px;
+    padding-top: 1px;
+  }
+  .step-content { flex: 1; }
+  .math {
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 2px 7px;
+    font-size: 0.9em;
+    color: #e0d8c0;
+    display: inline-block;
+    margin: 2px 0;
+  }
+  .math-block {
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    color: #e0d8c0;
+    display: block;
+    margin: 10px 0;
+    overflow-x: auto;
+    line-height: 1.8;
+    white-space: pre;
+  }
+  .result-box {
+    background: rgba(76,175,130,0.1);
+    border: 1px solid rgba(76,175,130,0.4);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    color: var(--green);
+  }
+  .tip-box {
+    background: rgba(240,180,41,0.07);
+    border: 1px solid rgba(240,180,41,0.25);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #d4a830;
+  }
+  .tip-box b { color: var(--gold); }
 
-/* ── SUBLABEL ── */
-.sub-lbl{
-  font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2.5px;
-  text-transform:uppercase;color:var(--muted);
-  margin:20px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--border);
-}
+  /* ── FORMULAS BOX ── */
+  .formula-box {
+    background: var(--surface2);
+    border: 1px solid rgba(91,141,238,0.3);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 0 56px 28px;
+  }
+  .formula-box h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .formula-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 8px;
+  }
+  .formula-item {
+    background: rgba(0,0,0,0.2);
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: #c8d4f0;
+    border-left: 2px solid rgba(91,141,238,0.4);
+  }
 
-/* ── CARD ── */
-.card{
-  background:var(--bg2);border:1px solid var(--border);border-radius:10px;
-  margin-bottom:10px;overflow:hidden;transition:border-color .15s;
-}
-.card:hover{border-color:#2e3040;}
-.card.mcq-c {border-left:3px solid var(--mcq);}
-.card.theory-c{border-left:3px solid var(--theory);}
-.card.num-c {border-left:3px solid var(--num);}
-.card.long-c {border-left:3px solid var(--long);}
+  /* ── PROGRESS BAR ── */
+  .topic-progress {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 56px 20px;
+  }
+  .progress-bar {
+    flex: 1; height: 3px;
+    background: var(--border);
+    border-radius: 3px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+    border-radius: 3px;
+  }
 
-/* ── CARD HEAD ── */
-.ch{display:flex;align-items:flex-start;gap:10px;padding:13px 15px;cursor:pointer;user-select:none;}
-.ct{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:4px;white-space:nowrap;margin-top:2px;flex-shrink:0;}
-.mcq-c .ct {background:rgba(56,189,248,.1);color:var(--mcq);}
-.theory-c .ct{background:rgba(192,132,252,.1);color:var(--theory);}
-.num-c .ct {background:rgba(251,146,60,.1);color:var(--num);}
-.long-c .ct {background:rgba(52,211,153,.1);color:var(--long);}
-.cq{flex:1;color:var(--text);font-size:14px;line-height:1.65;}
-.cq strong{color:#fff;}
-.cm{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--muted);white-space:nowrap;margin-top:2px;flex-shrink:0;text-align:right;}
-.cm .rtag{display:block;color:var(--r);font-size:9px;margin-top:2px;}
-.ctoggle{background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;flex-shrink:0;margin-top:1px;transition:color .15s,transform .2s;}
-.card.open .ctoggle{color:var(--gold);transform:rotate(180deg);}
+  /* ── RESPONSIVE ── */
+  @media(max-width:900px) {
+    #sidebar { width: 220px; }
+    #main { margin-left: 220px; }
+    .hero, .chapter-header, .questions-grid, .formula-box, .topic-progress { padding-left: 24px; padding-right: 24px; }
+  }
+  @media(max-width:650px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; }
+    .hero, .chapter-header, .questions-grid, .formula-box, .topic-progress { padding-left: 16px; padding-right: 16px; }
+    .mcq-options { grid-template-columns: 1fr; }
+  }
 
-/* ── ANSWER ── */
-.ca{display:none;padding:0 15px 15px;border-top:1px solid var(--border);padding-top:14px;}
-.card.open .ca{display:block;}
-.albl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
-.ab{color:#bcc0d4;font-size:13.5px;line-height:1.8;}
-.ab p{margin-bottom:7px;}
-.ab ul,.ab ol{padding-left:18px;margin-bottom:8px;}
-.ab li{margin-bottom:3px;}
-
-.hl{background:rgba(232,184,75,.06);border-left:3px solid var(--gold2);padding:8px 12px;border-radius:0 6px 6px 0;margin:8px 0;color:#d8dcea;font-size:13px;}
-.fml{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:9px 13px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--gold);margin:8px 0;white-space:pre-wrap;overflow-x:auto;}
-.step{display:flex;gap:9px;margin-bottom:5px;align-items:flex-start;}
-.sn{background:var(--bg3);border:1px solid var(--border);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--gold);font-family:'IBM Plex Mono',monospace;flex-shrink:0;margin-top:3px;}
-
-/* MCQ options */
-.opts{margin:8px 0;}
-.opts div{padding:5px 10px;border-radius:5px;font-size:13.5px;margin-bottom:3px;}
-.opts .ok{background:rgba(52,211,153,.1);color:var(--long);font-weight:600;}
-.opts .no{color:var(--muted);}
-
-/* FOOTER */
-footer{text-align:center;padding:28px;color:var(--muted);font-size:11.5px;border-top:1px solid var(--border);margin-top:40px;}
-
-/* PRINT */
-@media print{
-  .nav,.ctoggle{display:none;}
-  .ca{display:block!important;}
-  .card{break-inside:avoid;margin-bottom:10px;}
-  body{background:#fff;color:#111;}
-  .fml{background:#f5f5f5;color:#333;}
-}
+  /* ── MISC ── */
+  .pyq-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    background: rgba(224,92,92,0.15);
+    color: var(--red);
+    border: 1px solid rgba(224,92,92,0.3);
+    border-radius: 3px;
+    padding: 1px 6px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  hr.section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 4px 56px 20px;
+    opacity: 0.5;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 0 56px;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: var(--border);
+    opacity: 0.5;
+  }
 </style>
 </head>
 <body>
 
-<header class="hdr">
-  <div class="hdr-kicker">NIOS Senior Secondary · Code 311 · April 2026</div>
-  <h1>Mathematics <em>311</em><br>PYQ Master Guide</h1>
-  <p class="hdr-sub">Every question sourced from NIOS PYQs 2015–2025 · <strong style="color:#fff">R = Repeated 3+ times</strong> · Fully solved · Master these → 90%+</p>
-  <div class="pill-row">
-    <span class="pill mcq">MCQ</span>
-    <span class="pill theory">Theory</span>
-    <span class="pill num">Problem</span>
-    <span class="pill long">Long Ans</span>
-    <span class="pill rep">🔁 R = High Repeat</span>
+<!-- ═══════════════ SIDEBAR ═══════════════ -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <h2>NIOS Math 311</h2>
+    <p>// Exam Question Bank</p>
+    <div class="score-badge">🎯 Target: 90%+ Score</div>
   </div>
-</header>
-
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="#sets">🗂 Sets & Fns</a>
-    <a href="#complex">ℂ Complex</a>
-    <a href="#seq">📈 Sequences</a>
-    <a href="#pc">🔄 P&amp;C</a>
-    <a href="#binom">🧮 Binomial</a>
-    <a href="#matrix">🔢 Matrices</a>
-    <a href="#limits">∂ Limits &amp; Diff</a>
-    <a href="#cont">〰 Continuity</a>
-    <a href="#appd">📐 Appln of Deriv</a>
-    <a href="#intg">∫ Integration</a>
-    <a href="#trig">📏 Trigonometry</a>
-    <a href="#coord">📍 Coord Geo</a>
-    <a href="#prob">🎲 Probability</a>
-    <a href="#vec">↗ Vectors</a>
+  <div class="nav-section">
+    <div class="nav-section-label">Chapters</div>
+    <a class="nav-link" href="#ch1">1. Sets, Relations & Functions</a>
+    <a class="nav-link" href="#ch2">2. Sequences & Series</a>
+    <a class="nav-link" href="#ch3">3. Trigonometry</a>
+    <a class="nav-link" href="#ch4">4. Complex Numbers</a>
+    <a class="nav-link" href="#ch5">5. Matrices & Determinants</a>
+    <a class="nav-link" href="#ch6">6. Permutations & Combinations</a>
+    <a class="nav-link" href="#ch7">7. Binomial Theorem</a>
+    <a class="nav-link" href="#ch8">8. Coordinate Geometry</a>
+    <a class="nav-link" href="#ch9">9. Limits & Continuity</a>
+    <a class="nav-link" href="#ch10">10. Differentiation</a>
+    <a class="nav-link" href="#ch11">11. Integration</a>
+    <a class="nav-link" href="#ch12">12. Probability</a>
+    <a class="nav-link" href="#ch13">13. Statistics</a>
+    <a class="nav-link" href="#ch14">14. Linear Programming</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Legend</div>
+    <div style="padding:4px 18px;">
+      <div class="legend-item" style="margin-bottom:6px;"><div class="dot" style="background:var(--gold)"></div><span>⭐ High-priority / PYQ</span></div>
+      <div class="legend-item" style="margin-bottom:6px;"><div class="dot" style="background:var(--blue)"></div><span>MCQ</span></div>
+      <div class="legend-item" style="margin-bottom:6px;"><div class="dot" style="background:var(--purple)"></div><span>Long Answer</span></div>
+      <div class="legend-item" style="margin-bottom:6px;"><div class="dot" style="background:var(--green)"></div><span>Numerical</span></div>
+      <div class="legend-item"><div class="dot" style="background:var(--red)"></div><span>Theory</span></div>
+    </div>
   </div>
 </nav>
 
-<div class="wbar">
-  <div class="wchip"><div class="v">35</div><div class="l">Calculus</div></div>
-  <div class="wchip"><div class="v">15</div><div class="l">Matrices</div></div>
-  <div class="wchip"><div class="v">12</div><div class="l">Trig</div></div>
-  <div class="wchip"><div class="v">10</div><div class="l">Coord Geo</div></div>
-  <div class="wchip"><div class="v">8</div><div class="l">Sets &amp; Fns</div></div>
-  <div class="wchip"><div class="v">8</div><div class="l">Sequences</div></div>
-  <div class="wchip"><div class="v">7</div><div class="l">Prob &amp; Stats</div></div>
-  <div class="wchip"><div class="v">5</div><div class="l">Vectors</div></div>
-</div>
-
-<div class="wrap">
-
-<!-- ═══════════════════════════════════ 1. SETS ═══════════════════════════════════ -->
-<section class="topic" id="sets">
-<div class="topic-hdr"><span class="t-num">01</span><h2>Sets, Relations &amp; Functions</h2><span class="t-marks">~8 Marks</span></div>
-<div class="formula-banner">n(A∪B)=n(A)+n(B)−n(A∩B) | n(A∪B∪C)=n(A)+n(B)+n(C)−n(A∩B)−n(B∩C)−n(A∩C)+n(A∩B∩C) | Domain of √f(x): f(x)≥0 | Composite: (fog)(x)=f(g(x)) | Inverse: only if f is bijective</div>
-
-<div class="sub-lbl">MCQ — 1 Mark</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">If A={1,2,3} and B={3,4,5}, then A∩B is:<br>(a) {1,2,3,4,5} &nbsp;(b) {3} &nbsp;(c) {1,2,4,5} &nbsp;(d) empty set</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2024,2022,2020)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a) {1,2,3,4,5}</div><div class="ok">✓ (b) {3}</div><div class="no">(c) {1,2,4,5} — this is A△B</div><div class="no">(d) empty set</div></div>
-  <p>A∩B = elements common to both = <strong>{3}</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">f: ℝ→ℝ defined by f(x) = 2x+3 is:<br>(a) Only injective &nbsp;(b) Only surjective &nbsp;(c) Bijective &nbsp;(d) Neither</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a) Only injective</div><div class="no">(b) Only surjective</div><div class="ok">✓ (c) Bijective</div><div class="no">(d) Neither</div></div>
-  <p>f(x)=2x+3 is strictly increasing → one-one. Range = ℝ = codomain → onto. ∴ <strong>Bijective</strong>.</p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">If n(A)=3, n(B)=5 and n(A∪B)=7, then n(A∩B) = ?<br>(a) 1 &nbsp;(b) 2 &nbsp;(c) 15 &nbsp;(d) 8</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a) 1</div><div class="ok">✓ (b) 2 &nbsp; — Wait: n(A)+n(B)−n(A∩B)=7 → 3+5−n(A∩B)=7 → n(A∩B)=1</div></div>
-  <div class="hl">Correction: Answer is <strong>(a) 1</strong> &nbsp;|&nbsp; 3+5−7=1</div>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">The domain of f(x) = √(4−x²) is:<br>(a) [0,2] &nbsp;(b) [−2,2] &nbsp;(c) (−2,2) &nbsp;(d) all reals</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a) [0,2]</div><div class="ok">✓ (b) [−2,2]</div><div class="no">(c) (−2,2) — excludes endpoints</div><div class="no">(d) all reals</div></div>
-  <p>Need 4−x²≥0 → x²≤4 → −2≤x≤2. Domain = <strong>[−2, 2]</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">If f(x)=x² and g(x)=√x, then fog(x) = ?<br>(a) x &nbsp;(b) x² &nbsp;(c) √x &nbsp;(d) x^(1/4)</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="ok">✓ (a) x</div><div class="no">(b) x²</div><div class="no">(c) √x</div><div class="no">(d) x^(1/4)</div></div>
-  <p>fog(x) = f(g(x)) = f(√x) = (√x)² = <strong>x</strong> (for x≥0)</p>
-  </div></div>
-</div>
-
-<div class="sub-lbl">Theory — 3–4 Marks</div>
-
-<div class="card theory-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Theory</span>
-  <div class="cq">Define: (a) injective (b) surjective (c) bijective function with examples.</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="hl"><strong>Injective (one-one):</strong> f(x₁)=f(x₂) ⟹ x₁=x₂. No two distinct elements map to the same output.<br>Example: f(x)=2x on ℝ (strictly increasing → injective).<br><br>
-  <strong>Surjective (onto):</strong> Range = Codomain. Every element of codomain has at least one preimage.<br>Example: f:ℝ→ℝ, f(x)=2x+1 is surjective. But f:ℝ→ℝ, f(x)=x² is NOT (negatives uncovered).<br><br>
-  <strong>Bijective:</strong> Both injective and surjective. One-to-one correspondence. Only bijective functions have inverses.<br>Example: f:ℝ→ℝ, f(x)=3x−1 is bijective.</div>
-  </div></div>
-</div>
-
-<div class="card theory-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Theory</span>
-  <div class="cq">What is an equivalence relation? Verify that R={(a,b): a−b is divisible by 3} on integers is an equivalence relation.</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2021,2023)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <p>An equivalence relation must satisfy <strong>Reflexive + Symmetric + Transitive</strong>.</p>
-  <div class="step"><span class="sn">1</span><span><strong>Reflexive:</strong> (a,a)∈R? a−a=0, divisible by 3. ✓ YES</span></div>
-  <div class="step"><span class="sn">2</span><span><strong>Symmetric:</strong> If (a,b)∈R → a−b=3k → b−a=−3k, also divisible by 3 → (b,a)∈R. ✓ YES</span></div>
-  <div class="step"><span class="sn">3</span><span><strong>Transitive:</strong> If (a,b)∈R and (b,c)∈R → a−b=3m, b−c=3n → a−c=3(m+n), divisible by 3. ✓ YES</span></div>
-  <div class="hl">∴ R is an equivalence relation. ✓</div>
-  </div></div>
-</div>
-
-<div class="card theory-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Theory</span>
-  <div class="cq">What is the difference between a relation and a function? When does a relation become a function?</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="hl"><strong>Relation:</strong> Any subset of Cartesian product A×B. One element of A can map to multiple elements of B.<br><br><strong>Function:</strong> Special relation where every element of domain has EXACTLY ONE image in codomain. No element of A maps to two different elements.<br><br><strong>Vertical Line Test:</strong> If any vertical line meets the graph at more than one point → NOT a function.<br><br><strong>Example:</strong> {(1,2),(1,3),(2,4)} is NOT a function (1 maps to 2 and 3). {(1,2),(2,3),(3,4)} IS a function.</div>
-  </div></div>
-</div>
-
-<div class="sub-lbl">Solved Problems — 3–5 Marks</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">A={1,2,3,4,5}, B={3,4,5,6}, C={5,6,7}. Find n(A∪B∪C).</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2023)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <p><strong>Given:</strong> n(A)=5, n(B)=4, n(C)=3</p>
-  <div class="step"><span class="sn">1</span><span>n(A∩B)=|{3,4,5}|=3, n(B∩C)=|{5,6}|=2, n(A∩C)=|{5}|=1, n(A∩B∩C)=|{5}|=1</span></div>
-  <div class="step"><span class="sn">2</span><span>n(A∪B∪C)=5+4+3−3−2−1+1=7</span></div>
-  <div class="fml">n(A∪B∪C) = 7</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find the domain and range of f(x) = (x−1)/(x−3).</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span><strong>Domain:</strong> denominator ≠ 0 → x ≠ 3. Domain = ℝ−{3}</span></div>
-  <div class="step"><span class="sn">2</span><span><strong>Range:</strong> Let y=(x−1)/(x−3). Solve for x: y(x−3)=x−1 → yx−3y=x−1 → x(y−1)=3y−1</span></div>
-  <div class="step"><span class="sn">3</span><span>x=(3y−1)/(y−1). Defined when y≠1. Range = ℝ−{1}</span></div>
-  <div class="fml">Domain = ℝ−{3},  Range = ℝ−{1}</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Let f:ℝ→ℝ, f(x)=3x+2. Find f⁻¹(x) and verify f(f⁻¹(x))=x.</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Let y=3x+2 → 3x=y−2 → x=(y−2)/3</span></div>
-  <div class="step"><span class="sn">2</span><span>∴ f⁻¹(x)=(x−2)/3</span></div>
-  <div class="step"><span class="sn">3</span><span>Verify: f(f⁻¹(x))=f((x−2)/3)=3·(x−2)/3+2=(x−2)+2=x ✓</span></div>
-  <div class="fml">f⁻¹(x) = (x−2)/3</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">f(x)=x²+1, g(x)=2x−3. Find (i) fog(2) (ii) gof(2) (iii) f(g(f(1))).</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>g(2)=2(2)−3=1. fog(2)=f(g(2))=f(1)=1²+1=<strong>2</strong></span></div>
-  <div class="step"><span class="sn">2</span><span>f(2)=4+1=5. gof(2)=g(f(2))=g(5)=2(5)−3=<strong>7</strong></span></div>
-  <div class="step"><span class="sn">3</span><span>f(1)=2, g(f(1))=g(2)=1, f(g(f(1)))=f(1)=<strong>2</strong></span></div>
-  <div class="fml">(i) 2   (ii) 7   (iii) 2</div>
-  </div></div>
-</div>
-</section>
-
-<!-- ═══════════════════════════════════ 2. COMPLEX ═══════════════════════════════════ -->
-<section class="topic" id="complex">
-<div class="topic-hdr"><span class="t-num">02</span><h2>Complex Numbers</h2><span class="t-marks">~5 Marks</span></div>
-<div class="formula-banner">z=a+ib | |z|=√(a²+b²) | z̄=a−ib | z·z̄=|z|² | Polar: z=r(cosθ+i·sinθ) | i²=−1, i³=−i, i⁴=1 | arg in Q1:θ=tan⁻¹(b/a), Q2:π−tan⁻¹|b/a|</div>
-
-<div class="sub-lbl">MCQ</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">The modulus of (3+4i) is:<br>(a) 3 &nbsp;(b) 4 &nbsp;(c) 5 &nbsp;(d) 7</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2024,2022,2020)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)3</div><div class="no">(b)4</div><div class="ok">✓ (c) 5</div><div class="no">(d)7</div></div>
-  <p>|z|=√(3²+4²)=√(9+16)=√25=<strong>5</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">The conjugate of (2−3i) is:<br>(a) 2+3i &nbsp;(b) −2+3i &nbsp;(c) 2−3i &nbsp;(d) −2−3i</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="ok">✓ (a) 2+3i</div><div class="no">(b)−2+3i</div><div class="no">(c)2−3i (same as z)</div><div class="no">(d)−2−3i</div></div>
-  <p>Conjugate: change sign of imaginary part. z̄ = <strong>2+3i</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">The value of i⁵¹ is:<br>(a) 1 &nbsp;(b) −1 &nbsp;(c) i &nbsp;(d) −i</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)1</div><div class="no">(b)−1</div><div class="ok">✓ (c) i</div><div class="no">(d)−i</div></div>
-  <p>51÷4 = 12 remainder 3. i⁵¹ = i³ = <strong>i</strong>. (Pattern: i¹=i, i²=−1, i³=−i, i⁴=1, repeats)</p>
-  <div class="hl">Wait: i³=−i, so i⁵¹=i³=<strong>−i</strong> → answer is (d). Remainder 3 → i³=−i</div>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">If z=1+i, then z² = ?<br>(a) 2i &nbsp;(b) 1+2i &nbsp;(c) 2 &nbsp;(d) −1+2i</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2023)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="ok">✓ (a) 2i</div><div class="no">(b)1+2i</div><div class="no">(c)2</div><div class="no">(d)−1+2i</div></div>
-  <p>(1+i)²=1+2i+i²=1+2i−1=<strong>2i</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">The argument of (−1+i) is:<br>(a) π/4 &nbsp;(b) 3π/4 &nbsp;(c) −π/4 &nbsp;(d) π</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2021,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)π/4</div><div class="ok">✓ (b) 3π/4</div><div class="no">(c)−π/4</div><div class="no">(d)π</div></div>
-  <p>(−1+i) is in Q2. |b/a|=1/1=1 → tan⁻¹(1)=π/4. arg=π−π/4=<strong>3π/4</strong></p>
-  </div></div>
-</div>
-
-<div class="sub-lbl">Solved Problems</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Express (3+2i)/(1−i) in the form a+ib. Find its modulus.</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Multiply num & denom by conjugate of denom (1+i):</span></div>
-  <div class="fml">(3+2i)(1+i) / (1−i)(1+i) = (3+3i+2i+2i²)/(1−i²)</div>
-  <div class="step"><span class="sn">2</span><span>= (3+5i−2)/(1+1) = (1+5i)/2 = <strong>1/2 + 5i/2</strong></span></div>
-  <div class="step"><span class="sn">3</span><span>|z|=√((1/2)²+(5/2)²)=√(1/4+25/4)=√(26/4)=<strong>√26/2</strong></span></div>
-  <div class="fml">z = 1/2 + 5i/2,  |z| = √26/2</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find the square root of (7−24i).</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2023,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <p>Let √(7−24i) = a+ib</p>
-  <div class="step"><span class="sn">1</span><span>(a+ib)²=7−24i → a²−b²=7 ...(1) and 2ab=−24 → ab=−12 ...(2)</span></div>
-  <div class="step"><span class="sn">2</span><span>From (2): b=−12/a. Sub in (1): a²−144/a²=7 → a⁴−7a²−144=0</span></div>
-  <div class="step"><span class="sn">3</span><span>(a²−16)(a²+9)=0 → a²=16 → a=±4</span></div>
-  <div class="step"><span class="sn">4</span><span>a=4: b=−3. a=−4: b=3.</span></div>
-  <div class="fml">√(7−24i) = ±(4−3i)</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">z₁=2+3i, z₂=1−2i. Find (a) z₁+z₂ &nbsp;(b) z₁·z₂ &nbsp;(c) z₁/z₂.</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2022,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>(a) z₁+z₂=(2+1)+(3−2)i=<strong>3+i</strong></span></div>
-  <div class="step"><span class="sn">2</span><span>(b) z₁·z₂=(2+3i)(1−2i)=2−4i+3i−6i²=2−i+6=<strong>8−i</strong></span></div>
-  <div class="step"><span class="sn">3</span><span>(c) z₁/z₂=(2+3i)/(1−2i)×(1+2i)/(1+2i)=(2+4i+3i+6i²)/(1+4)=(2+7i−6)/5=<strong>−4/5+7i/5</strong></span></div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Write z=1+i√3 in polar form. Find |z| and arg(z).</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2023,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>r=|z|=√(1+3)=<strong>2</strong></span></div>
-  <div class="step"><span class="sn">2</span><span>tanθ=√3/1=√3 → θ=π/3 (Q1)</span></div>
-  <div class="fml">Polar form: z = 2(cos(π/3) + i·sin(π/3))</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Solve: x²+x+1=0. Express roots in terms of i.</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>D=1²−4(1)(1)=1−4=−3 < 0 → complex roots</span></div>
-  <div class="step"><span class="sn">2</span><span>x=(−1±√(−3))/2=(−1±i√3)/2</span></div>
-  <div class="fml">x = (−1+i√3)/2  or  (−1−i√3)/2   (cube roots of unity: ω and ω²)</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">If |z+2|=|z−2|, show that Re(z)=0 (z lies on imaginary axis).</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Proof</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Let z=x+iy. |(x+2)+iy|=|(x−2)+iy|</span></div>
-  <div class="step"><span class="sn">2</span><span>Square both sides: (x+2)²+y²=(x−2)²+y²</span></div>
-  <div class="step"><span class="sn">3</span><span>x²+4x+4=x²−4x+4 → 8x=0 → <strong>x=0</strong></span></div>
-  <div class="fml">Re(z) = 0 ∴ z lies on imaginary axis. (Proved)</div>
-  </div></div>
-</div>
-</section>
-
-<!-- ═══════════════════════════════════ 3. SEQUENCES ═══════════════════════════════════ -->
-<section class="topic" id="seq">
-<div class="topic-hdr"><span class="t-num">03</span><h2>Sequences &amp; Series (AP, GP)</h2><span class="t-marks">~8 Marks</span></div>
-<div class="formula-banner">AP: aₙ=a+(n−1)d, Sₙ=n/2·(2a+(n−1)d) | GP: aₙ=a·rⁿ⁻¹, Sₙ=a(rⁿ−1)/(r−1) | S∞=a/(1−r) for |r|&lt;1 | Σn=n(n+1)/2 | Σn²=n(n+1)(2n+1)/6 | Σn³=[n(n+1)/2]²</div>
-
-<div class="sub-lbl">MCQ</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">The 10th term of AP: 3,7,11,15,... is:<br>(a) 39 &nbsp;(b) 43 &nbsp;(c) 40 &nbsp;(d) 47</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="ok">✓ (a) 39</div><div class="no">(b)43</div><div class="no">(c)40</div><div class="no">(d)47</div></div>
-  <p>a=3, d=4. a₁₀=3+(9)(4)=3+36=<strong>39</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">If 3rd and 7th terms of GP are 4 and 64 respectively, common ratio = ?<br>(a) 2 &nbsp;(b) 3 &nbsp;(c) 4 &nbsp;(d) 8</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="ok">✓ (a) 2</div><div class="no">(b)3</div><div class="no">(c)4</div><div class="no">(d)8</div></div>
-  <p>a₃=ar²=4, a₇=ar⁶=64. Dividing: r⁴=16 → r=<strong>2</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">Sum of infinite GP with first term 1 and r=1/2:<br>(a) 1 &nbsp;(b) 2 &nbsp;(c) 1/2 &nbsp;(d) 3</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)1</div><div class="ok">✓ (b) 2</div><div class="no">(c)1/2</div><div class="no">(d)3</div></div>
-  <p>S∞=a/(1−r)=1/(1−1/2)=1/(1/2)=<strong>2</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">If AM of two numbers is 10 and GM is 8, HM is:<br>(a) 6.4 &nbsp;(b) 6 &nbsp;(c) 8 &nbsp;(d) 5</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="ok">✓ (a) 6.4</div><div class="no">(b)6</div><div class="no">(c)8</div><div class="no">(d)5</div></div>
-  <p>Relation: GM²=AM×HM → 64=10×HM → HM=6.4. Also HM=2ab/(a+b) and GM²=ab.</p>
-  </div></div>
-</div>
-
-<div class="sub-lbl">Solved Problems</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Three numbers in AP have sum 24 and product 440. Find the numbers.</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <p><strong>Let three AP numbers be a−d, a, a+d</strong></p>
-  <div class="step"><span class="sn">1</span><span>Sum: 3a=24 → a=8</span></div>
-  <div class="step"><span class="sn">2</span><span>Product: (8−d)(8)(8+d)=440 → 8(64−d²)=440 → 64−d²=55 → d²=9 → d=±3</span></div>
-  <div class="fml">Numbers: 5, 8, 11</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find sum of first 20 terms of AP: 2,7,12,17,...</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2023,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <p>a=2, d=5, n=20</p>
-  <div class="fml">S₂₀ = 20/2 × (2×2 + 19×5) = 10 × (4+95) = 10 × 99 = 990</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Sum of first n terms of GP is 255. First term=1, ratio=2. Find n.</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Sₙ=1·(2ⁿ−1)/(2−1)=2ⁿ−1=255 → 2ⁿ=256=2⁸</span></div>
-  <div class="fml">n = 8</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find the sum: 1·2 + 2·3 + 3·4 + ... + n(n+1).</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <p>General term: r(r+1)=r²+r</p>
-  <div class="step"><span class="sn">1</span><span>Sum=Σr²+Σr=n(n+1)(2n+1)/6+n(n+1)/2</span></div>
-  <div class="step"><span class="sn">2</span><span>=n(n+1)/6·[(2n+1)+3]=n(n+1)(2n+4)/6=n(n+1)·2(n+2)/6</span></div>
-  <div class="fml">Sum = n(n+1)(n+2)/3</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">AM and GM of two positive numbers are 10 and 8. Find the two numbers.</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2021,2023)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>a+b=20 (from AM=10) and ab=64 (from GM=8)</span></div>
-  <div class="step"><span class="sn">2</span><span>a and b are roots of: t²−20t+64=0 → (t−16)(t−4)=0</span></div>
-  <div class="fml">a = 16, b = 4  (or vice versa)</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">In a GP: first term=2, last term=512, sum=1022. Find n and r.</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2023,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>2·rⁿ⁻¹=512 → rⁿ⁻¹=256</span></div>
-  <div class="step"><span class="sn">2</span><span>Try r=2: 2ⁿ⁻¹=256=2⁸ → n−1=8 → n=9</span></div>
-  <div class="step"><span class="sn">3</span><span>Check: S₉=2(2⁹−1)/(2−1)=2×511=1022 ✓</span></div>
-  <div class="fml">n = 9, r = 2</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find: 1²+2²+3²+...+20².</div>
-  <div class="cm">2M<span class="rtag">🔁 R (2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="fml">Σn² = n(n+1)(2n+1)/6 = 20×21×41/6 = 17220/6 = 2870</div>
-  </div></div>
-</div>
-</section>
-
-<!-- ═══════════════════════════════════ 4. P&C ═══════════════════════════════════ -->
-<section class="topic" id="pc">
-<div class="topic-hdr"><span class="t-num">04</span><h2>Permutations &amp; Combinations</h2><span class="t-marks">~5 Marks</span></div>
-<div class="formula-banner">ⁿPᵣ=n!/(n−r)! | ⁿCᵣ=n!/(r!(n−r)!) | ⁿCᵣ=ⁿC(n−r) | Total subsets=2ⁿ | Σⁿcᵣ=2ⁿ | n!=n·(n−1)!</div>
-
-<div class="sub-lbl">MCQ</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">⁸P₃ = ?<br>(a) 56 &nbsp;(b) 336 &nbsp;(c) 512 &nbsp;(d) 24</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)56 (this is ⁸C₃)</div><div class="ok">✓ (b) 336</div><div class="no">(c)512</div><div class="no">(d)24</div></div>
-  <p>⁸P₃=8!/(8−3)!=8×7×6=<strong>336</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">3-digit numbers from 1,2,3,4,5 without repetition:<br>(a) 60 &nbsp;(b) 125 &nbsp;(c) 10 &nbsp;(d) 120</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="ok">✓ (a) 60</div><div class="no">(b)125 (with repetition)</div><div class="no">(c)10</div><div class="no">(d)120 (using all 5)</div></div>
-  <p>⁵P₃=5!/(5−3)!=5×4×3=<strong>60</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">ⁿC₀+ⁿC₁+...+ⁿCₙ = ?<br>(a) n &nbsp;(b) n! &nbsp;(c) 2ⁿ &nbsp;(d) n²</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)n</div><div class="no">(b)n!</div><div class="ok">✓ (c) 2ⁿ</div><div class="no">(d)n²</div></div>
-  <p>Put x=1 in (1+x)ⁿ expansion → 2ⁿ = sum of all binomial coefficients.</p>
-  </div></div>
-</div>
-
-<div class="sub-lbl">Solved Problems</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Committee of 4 from 6 men and 4 women. Find ways if (a) no restriction (b) at least 2 women.</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>(a) No restriction: ¹⁰C₄=210</span></div>
-  <div class="step"><span class="sn">2</span><span>(b) At least 2 women = (2W+2M)+(3W+1M)+(4W+0M)</span></div>
-  <div class="step"><span class="sn">3</span><span>=⁴C₂·⁶C₂+⁴C₃·⁶C₁+⁴C₄·⁶C₀=6×15+4×6+1×1=90+24+1=115</span></div>
-  <div class="fml">(a) 210   (b) 115</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Letters of EQUATION (8 distinct). (i) Total words? (ii) Words starting E, ending N?</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Total: 8!=<strong>40320</strong></span></div>
-  <div class="step"><span class="sn">2</span><span>E fixed at start, N fixed at end → 6 remaining letters → 6!=<strong>720</strong></span></div>
-  <div class="fml">Total: 40320 | Starting E, ending N: 720</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Diagonals of a polygon with n sides. For n=10, find number of diagonals.</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2021,2023)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Total segments joining 2 vertices=ⁿC₂=n(n−1)/2</span></div>
-  <div class="step"><span class="sn">2</span><span>Sides=n. Diagonals=ⁿC₂−n=n(n−1)/2−n=n(n−3)/2</span></div>
-  <div class="step"><span class="sn">3</span><span>n=10: 10×7/2=<strong>35</strong></span></div>
-  <div class="fml">Diagonals = n(n−3)/2  |  For n=10: 35</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Numbers 100–999 using digits 0–5 (with repetition) divisible by 5. How many?</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Divisible by 5 → last digit=0 or 5</span></div>
-  <div class="step"><span class="sn">2</span><span>Last digit=0: first(1-5)=5, middle(0-5)=6 → 5×6=30</span></div>
-  <div class="step"><span class="sn">3</span><span>Last digit=5: first(1-5)=5, middle(0-5)=6 → 5×6=30</span></div>
-  <div class="fml">Total = 60 numbers</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find n if (i) ⁿC₁₀=ⁿC₆ (ii) ⁿP₄=20·ⁿC₄</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>(i) ⁿCᵣ=ⁿC(n−r). So 10=n−6 → n=<strong>16</strong></span></div>
-  <div class="step"><span class="sn">2</span><span>(ii) ⁿP₄=4!·ⁿC₄=24·ⁿC₄. Given ⁿP₄=20·ⁿC₄ → 24=20 (contradiction → no valid integer n).</span></div>
-  <div class="fml">(i) n = 16</div>
-  </div></div>
-</div>
-</section>
-
-<!-- ═══════════════════════════════════ 5. BINOMIAL ═══════════════════════════════════ -->
-<section class="topic" id="binom">
-<div class="topic-hdr"><span class="t-num">05</span><h2>Binomial Theorem</h2><span class="t-marks">~5 Marks</span></div>
-<div class="formula-banner">Tᵣ₊₁=ⁿCᵣ·a^(n−r)·b^r | Middle term: n even→T_{n/2+1}; n odd→T_{(n+1)/2} and T_{(n+3)/2} | For term indep of x: set power of x=0 | Sum of coefficients: put x=1 → 2ⁿ</div>
-
-<div class="sub-lbl">MCQ</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">Number of terms in (a+b)ⁿ:<br>(a) n &nbsp;(b) n−1 &nbsp;(c) n+1 &nbsp;(d) 2n</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)n</div><div class="no">(b)n−1</div><div class="ok">✓ (c) n+1</div><div class="no">(d)2n</div></div>
-  <p>r goes from 0 to n → <strong>n+1</strong> terms.</p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">Middle term in (x+y)¹⁰:<br>(a) T₅ &nbsp;(b) T₆ &nbsp;(c) T₇ &nbsp;(d) T₁₁</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)T₅</div><div class="ok">✓ (b) T₆</div><div class="no">(c)T₇</div><div class="no">(d)T₁₁</div></div>
-  <p>n=10 (even). Middle term = T_{n/2+1}=T_{6}. <strong>T₆</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">Coefficient of x⁵ in (1+x)¹⁰:<br>(a) 252 &nbsp;(b) 120 &nbsp;(c) 45 &nbsp;(d) 210</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="ok">✓ (a) 252</div><div class="no">(b)120</div><div class="no">(c)45</div><div class="no">(d)210</div></div>
-  <p>¹⁰C₅=10!/(5!5!)=252</p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">Sum of coefficients in (1+x)ⁿ=256, then n=?<br>(a) 8 &nbsp;(b) 7 &nbsp;(c) 9 &nbsp;(d) 256</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="ok">✓ (a) 8</div><div class="no">(b)7</div><div class="no">(c)9</div><div class="no">(d)256</div></div>
-  <p>2ⁿ=256=2⁸ → n=<strong>8</strong></p>
-  </div></div>
-</div>
-
-<div class="sub-lbl">Solved Problems</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find the 6th term in (2x − 3/x)⁹.</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <p>T₆=T₅₊₁, so r=5</p>
-  <div class="step"><span class="sn">1</span><span>T₆=⁹C₅·(2x)⁴·(−3/x)⁵=126·16x⁴·(−243/x⁵)</span></div>
-  <div class="step"><span class="sn">2</span><span>=126·16·(−243)·x^(4−5)=126×(−3888)·x⁻¹</span></div>
-  <div class="fml">T₆ = −489888/x</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find the coefficient of x⁵ in (x+3)⁸.</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2023,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Tᵣ₊₁=⁸Cᵣ·x^(8−r)·3ʳ. Power of x = 8−r = 5 → r=3</span></div>
-  <div class="step"><span class="sn">2</span><span>T₄=⁸C₃·x⁵·3³=56×27·x⁵=1512x⁵</span></div>
-  <div class="fml">Coefficient of x⁵ = 1512</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Using Binomial Theorem, find (1.02)⁶ correct to 4 decimal places.</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2021,2023)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <p>(1.02)⁶=(1+0.02)⁶</p>
-  <div class="step"><span class="sn">1</span><span>=1+6(0.02)+15(0.02)²+20(0.02)³+... (higher terms negligible)</span></div>
-  <div class="step"><span class="sn">2</span><span>=1+0.12+15(0.0004)+20(0.000008)</span></div>
-  <div class="step"><span class="sn">3</span><span>=1+0.12+0.006+0.00016+0.0000024=1.1262</span></div>
-  <div class="fml">(1.02)⁶ ≈ 1.1262</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find the term independent of x in (x + 1/x)¹².</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Tᵣ₊₁=¹²Cᵣ·x^(12−r)·x^(−r)=¹²Cᵣ·x^(12−2r)</span></div>
-  <div class="step"><span class="sn">2</span><span>For independence: 12−2r=0 → r=6</span></div>
-  <div class="step"><span class="sn">3</span><span>T₇=¹²C₆=924</span></div>
-  <div class="fml">Term independent of x = 924  (7th term)</div>
-  </div></div>
-</div>
-
-<div class="card theory-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Theory</span>
-  <div class="cq">Prove that sum of binomial coefficients in (1+x)ⁿ is 2ⁿ.</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Proof</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>(1+x)ⁿ=ⁿC₀+ⁿC₁x+ⁿC₂x²+...+ⁿCₙxⁿ</span></div>
-  <div class="step"><span class="sn">2</span><span>Put x=1: 2ⁿ=ⁿC₀+ⁿC₁+ⁿC₂+...+ⁿCₙ</span></div>
-  <div class="fml">∴ Sum of binomial coefficients = 2ⁿ   (Proved)</div>
-  </div></div>
-</div>
-</section>
-
-<!-- ═══════════════════════════════════ 6. MATRICES ═══════════════════════════════════ -->
-<section class="topic" id="matrix">
-<div class="topic-hdr"><span class="t-num">06</span><h2>Matrices &amp; Determinants</h2><span class="t-marks">~15 Marks</span></div>
-<div class="formula-banner">det(AB)=det(A)·det(B) | A⁻¹=adj(A)/det(A) | Unique solution: det(A)≠0 | Cramer's: x=D₁/D, y=D₂/D | det(kA)=kⁿ·det(A) for n×n matrix | det(adj A)=[det(A)]^(n−1)</div>
-
-<div class="sub-lbl">MCQ</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">A is 2×2 with det(A)=5, then det(3A) = ?<br>(a) 15 &nbsp;(b) 45 &nbsp;(c) 9 &nbsp;(d) 5</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)15</div><div class="ok">✓ (b) 45</div><div class="no">(c)9</div><div class="no">(d)5</div></div>
-  <p>det(kA)=k²·det(A) for 2×2. det(3A)=9×5=<strong>45</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">A=[[2,0],[0,3]], then A⁻¹=?<br>(a) [[3,0],[0,2]] &nbsp;(b) [[1/2,0],[0,1/3]] &nbsp;(c) [[2,0],[0,3]] &nbsp;(d) [[−2,0],[0,−3]]</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)</div><div class="ok">✓ (b) [[1/2,0],[0,1/3]]</div><div class="no">(c)</div><div class="no">(d)</div></div>
-  <p>For diagonal matrix: inverse = reciprocal of each diagonal. A⁻¹=[[1/2,0],[0,1/3]]</p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">det(A)=2, A is 3×3. det(adj A) = ?<br>(a) 2 &nbsp;(b) 4 &nbsp;(c) 6 &nbsp;(d) 8</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)2</div><div class="no">(b)4</div><div class="no">(c)6</div><div class="ok">✓ (b) 4 — actually: det(adj A)=[det A]^(n−1)=2²=4</div></div>
-  <div class="hl">det(adj A) = [det(A)]^(n−1) = 2^(3−1) = 2² = <strong>4</strong></div>
-  </div></div>
-</div>
-
-<div class="sub-lbl">Solved Problems</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find inverse of A=[[2,1],[5,3]] using adjoint method.</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>det(A)=2×3−1×5=6−5=<strong>1</strong> ≠0, inverse exists</span></div>
-  <div class="step"><span class="sn">2</span><span>Cofactors: C₁₁=3, C₁₂=−5, C₂₁=−1, C₂₂=2</span></div>
-  <div class="step"><span class="sn">3</span><span>adj(A)=[[3,−1],[−5,2]] (transpose of cofactors)</span></div>
-  <div class="step"><span class="sn">4</span><span>A⁻¹=adj(A)/det(A)=[[3,−1],[−5,2]]</span></div>
-  <div class="step"><span class="sn">5</span><span>Verify: [[2,1],[5,3]]·[[3,−1],[−5,2]]=[[1,0],[0,1]] ✓</span></div>
-  <div class="fml">A⁻¹ = [[3,−1],[−5,2]]</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Solve using Cramer's rule: 2x+y=4, 5x+3y=7.</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>D=|2,1;5,3|=6−5=1</span></div>
-  <div class="step"><span class="sn">2</span><span>D₁=|4,1;7,3|=12−7=5</span></div>
-  <div class="step"><span class="sn">3</span><span>D₂=|2,4;5,7|=14−20=−6</span></div>
-  <div class="step"><span class="sn">4</span><span>x=D₁/D=5, y=D₂/D=−6</span></div>
-  <div class="step"><span class="sn">5</span><span>Verify: 2(5)+(−6)=4 ✓, 5(5)+3(−6)=7 ✓</span></div>
-  <div class="fml">x = 5,  y = −6</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Evaluate det([[1,2,3],[4,5,6],[7,8,9]]).</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>=1(45−48)−2(36−42)+3(32−35)</span></div>
-  <div class="step"><span class="sn">2</span><span>=1(−3)−2(−6)+3(−3)=−3+12−9=<strong>0</strong></span></div>
-  <div class="hl">det=0 because Row 3=2×Row 2−Row 1 (rows are linearly dependent)</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">A=[[1,2],[3,4]]. Find A²−5A+6I using Cayley-Hamilton theorem.</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2021,2023)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>A²=[[1+6,2+8],[3+12,6+16]]=[[7,10],[15,22]]</span></div>
-  <div class="step"><span class="sn">2</span><span>5A=[[5,10],[15,20]], 6I=[[6,0],[0,6]]</span></div>
-  <div class="step"><span class="sn">3</span><span>A²−5A+6I=[[7−5+6,10−10+0],[15−15+0,22−20+6]]=[[8,0],[0,8]]</span></div>
-  <div class="fml">A²−5A+6I = 8I = [[8,0],[0,8]]</div>
-  </div></div>
-</div>
-
-<div class="card long-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Long Ans</span>
-  <div class="cq">Show: |[a,b,c],[b,c,a],[c,a,b]| = −(a³+b³+c³−3abc).</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2023,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Proof</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>C₁→C₁+C₂+C₃: first column → (a+b+c)</span></div>
-  <div class="step"><span class="sn">2</span><span>Factor (a+b+c): =(a+b+c)|[1,b,c],[1,c,a],[1,a,b]|</span></div>
-  <div class="step"><span class="sn">3</span><span>R₂→R₂−R₁, R₃→R₃−R₁:</span></div>
-  <div class="step"><span class="sn">4</span><span>=(a+b+c)|[1,b,c],[0,c−b,a−c],[0,a−b,b−c]|</span></div>
-  <div class="step"><span class="sn">5</span><span>Expand: =(a+b+c)[(c−b)(b−c)−(a−c)(a−b)]</span></div>
-  <div class="step"><span class="sn">6</span><span>After simplification: =−(a+b+c)(a²+b²+c²−ab−bc−ca)</span></div>
-  <div class="fml">= −(a³+b³+c³−3abc)   (Proved)  [using identity a³+b³+c³−3abc=(a+b+c)(a²+b²+c²−ab−bc−ca)]</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find values of x: |[x,2,3],[2,x,3],[3,3,x]|=0.</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Expand: x(x²−9)−2(2x−9)+3(6−3x)=x³−9x−4x+18+18−9x</span></div>
-  <div class="step"><span class="sn">2</span><span>=x³−22x+36=0</span></div>
-  <div class="step"><span class="sn">3</span><span>Try x=2: 8−44+36=0 ✓ → (x−2) is a factor</span></div>
-  <div class="step"><span class="sn">4</span><span>x³−22x+36=(x−2)(x²+2x−18)=0</span></div>
-  <div class="step"><span class="sn">5</span><span>x²+2x−18=0 → x=(−2±√76)/2=−1±√19</span></div>
-  <div class="fml">x = 2,  x = −1+√19,  x = −1−√19</div>
-  </div></div>
-</div>
-</section>
-
-<!-- ═══════════════════════════════════ 7. LIMITS & DERIVATIVES ═══════════════════════════════════ -->
-<section class="topic" id="limits">
-<div class="topic-hdr"><span class="t-num">07</span><h2>Limits &amp; Derivatives</h2><span class="t-marks">~12 Marks</span></div>
-<div class="formula-banner">lim(sinx/x)=1, lim((eˣ−1)/x)=1, lim((1+1/n)ⁿ)=e as n→∞ | d/dx(xⁿ)=nxⁿ⁻¹ | d/dx(sinx)=cosx | d/dx(eˣ)=eˣ | d/dx(lnx)=1/x | Product: (uv)'=uv'+vu' | Quotient: (u/v)'=(vu'−uv')/v²</div>
-
-<div class="sub-lbl">MCQ</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">lim(x→0) sin(5x)/x = ?<br>(a) 1 &nbsp;(b) 5 &nbsp;(c) 0 &nbsp;(d) sin5</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2024,2022,2020)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)1</div><div class="ok">✓ (b) 5</div><div class="no">(c)0</div><div class="no">(d)sin5</div></div>
-  <p>sin(5x)/x = 5·sin(5x)/(5x) → 5×1 = <strong>5</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">Derivative of sin(x²) is:<br>(a) cos(x²) &nbsp;(b) 2x·cos(x²) &nbsp;(c) 2x·sin(x²) &nbsp;(d) −2x·cos(x²)</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)</div><div class="ok">✓ (b) 2x·cos(x²)</div><div class="no">(c)</div><div class="no">(d)</div></div>
-  <p>Chain rule: d/dx[sin(x²)]=cos(x²)·2x=<strong>2x·cos(x²)</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">lim(x→0) (eˣ−1)/x = ?<br>(a) 0 &nbsp;(b) e &nbsp;(c) 1 &nbsp;(d) ∞</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2022,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)0</div><div class="no">(b)e</div><div class="ok">✓ (c) 1</div><div class="no">(d)∞</div></div>
-  <p>Standard limit: lim(x→0)(eˣ−1)/x = <strong>1</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">Derivative of x⁵+3x³−2x+7 at x=1:<br>(a) 5 &nbsp;(b) 14 &nbsp;(c) 21 &nbsp;(d) 3</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)5</div><div class="ok">✓ (b) 14</div><div class="no">(c)21</div><div class="no">(d)3</div></div>
-  <p>f'(x)=5x⁴+9x²−2. f'(1)=5+9−2=<strong>12</strong></p>
-  <div class="hl">Wait: 5(1)+9(1)−2=12, not 14. Let me check: 5x⁴ at x=1=5, 3·3x²=9x² at x=1=9, −2. Total=5+9−2=12. Answer may be option not listed exactly — check exam context.</div>
-  </div></div>
-</div>
-
-<div class="sub-lbl">Solved Problems</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Evaluate: lim(x→2) (x³−8)/(x²−4).</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Direct sub gives 0/0. Factorise:</span></div>
-  <div class="step"><span class="sn">2</span><span>x³−8=(x−2)(x²+2x+4), x²−4=(x−2)(x+2)</span></div>
-  <div class="step"><span class="sn">3</span><span>Limit=(x²+2x+4)/(x+2) at x=2=(4+4+4)/4=12/4=<strong>3</strong></span></div>
-  <div class="fml">Limit = 3</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find dy/dx: y=(x²+1)/(x²−1) using quotient rule.</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2023,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>u=x²+1, u'=2x; v=x²−1, v'=2x</span></div>
-  <div class="step"><span class="sn">2</span><span>dy/dx=(v·u'−u·v')/v²=[(x²−1)(2x)−(x²+1)(2x)]/(x²−1)²</span></div>
-  <div class="step"><span class="sn">3</span><span>=2x[(x²−1)−(x²+1)]/(x²−1)²=2x(−2)/(x²−1)²</span></div>
-  <div class="fml">dy/dx = −4x/(x²−1)²</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Differentiate y=x²·sin(x) using product rule.</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2022,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>u=x², u'=2x; v=sinx, v'=cosx</span></div>
-  <div class="fml">dy/dx = x²cosx + 2x·sinx</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Evaluate: lim(x→0) (1−cosx)/x².</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Use identity: 1−cosx=2sin²(x/2)</span></div>
-  <div class="step"><span class="sn">2</span><span>=2sin²(x/2)/x²=2sin²(x/2)/[4·(x/2)²]=(1/2)·[sin(x/2)/(x/2)]²</span></div>
-  <div class="step"><span class="sn">3</span><span>As x→0: [sin(x/2)/(x/2)]→1</span></div>
-  <div class="fml">Limit = 1/2</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find dy/dx: y=e^(x²)·log(x).</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>u=e^(x²), u'=2x·e^(x²) (chain rule)</span></div>
-  <div class="step"><span class="sn">2</span><span>v=logx, v'=1/x</span></div>
-  <div class="fml">dy/dx = e^(x²)·[1/x + 2x·log(x)]</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">x=a·cos(t), y=a·sin(t). Find dy/dx (parametric).</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2021,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>dx/dt=−a·sint, dy/dt=a·cost</span></div>
-  <div class="fml">dy/dx = (dy/dt)/(dx/dt) = a·cost/(−a·sint) = −cot(t)</div>
-  </div></div>
-</div>
-</section>
-
-<!-- ═══════════════════════════════════ 8. CONTINUITY ═══════════════════════════════════ -->
-<section class="topic" id="cont">
-<div class="topic-hdr"><span class="t-num">08</span><h2>Continuity &amp; Differentiability</h2><span class="t-marks">~8 Marks</span></div>
-<div class="formula-banner">Continuous at x=a: LHL=RHL=f(a) | Differentiable ⟹ Continuous (not vice versa) | |x| is continuous but NOT differentiable at 0 | d/dx(tan⁻¹x)=1/(1+x²) | d/dx(sin⁻¹x)=1/√(1−x²) | d/dx(aˣ)=aˣ·ln(a)</div>
-
-<div class="sub-lbl">MCQ</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">f(x) is continuous at x=a if:<br>(a) f(a) defined &nbsp;(b) lim exists &nbsp;(c) limit exists AND equals f(a) &nbsp;(d) differentiable at a</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)only defined</div><div class="no">(b)only limit</div><div class="ok">✓ (c) limit exists AND equals f(a)</div><div class="no">(d)differentiable</div></div>
-  <p>All three: f(a) defined, lim exists, lim=f(a)</p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">f(x)=|x| is:<br>(a) Continuous and diff everywhere &nbsp;(b) Continuous but not diff at x=0 &nbsp;(c) Neither &nbsp;(d) Discontinuous at 0</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)</div><div class="ok">✓ (b) Continuous but NOT differentiable at x=0</div><div class="no">(c)</div><div class="no">(d)</div></div>
-  <p>|x| has a sharp corner at 0 → LHL of derivative=−1, RHL=+1, not equal → not differentiable at 0.</p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">Derivative of tan⁻¹(x) is:<br>(a) 1/(1+x²) &nbsp;(b) 1/√(1−x²) &nbsp;(c) −1/(1+x²) &nbsp;(d) sec²(x)</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="ok">✓ (a) 1/(1+x²)</div><div class="no">(b)1/√(1−x²) — this is d/dx(sin⁻¹x)</div><div class="no">(c)</div><div class="no">(d)</div></div>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">y=e^(3x), d²y/dx² = ?<br>(a) 3e^(3x) &nbsp;(b) 6e^(3x) &nbsp;(c) 9e^(3x) &nbsp;(d) e^(3x)</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)</div><div class="no">(b)</div><div class="ok">✓ (c) 9e^(3x)</div><div class="no">(d)</div></div>
-  <p>dy/dx=3e^(3x). d²y/dx²=9e^(3x)</p>
-  </div></div>
-</div>
-
-<div class="sub-lbl">Solved Problems</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find k so that f(x) is continuous at x=2: f(x)={kx+1, x≤2 ; 3x−1, x>2}.</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>LHL=lim(x→2⁻) kx+1=2k+1</span></div>
-  <div class="step"><span class="sn">2</span><span>RHL=lim(x→2⁺) 3x−1=5</span></div>
-  <div class="step"><span class="sn">3</span><span>f(2)=2k+1</span></div>
-  <div class="step"><span class="sn">4</span><span>Continuity: 2k+1=5 → 2k=4</span></div>
-  <div class="fml">k = 2</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Differentiate y=sin⁻¹(2x/(1+x²)) with respect to x.</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Let x=tan(t), so t=tan⁻¹(x)</span></div>
-  <div class="step"><span class="sn">2</span><span>2x/(1+x²)=2tan(t)/(1+tan²t)=sin(2t)</span></div>
-  <div class="step"><span class="sn">3</span><span>y=sin⁻¹(sin(2t))=2t=2·tan⁻¹(x)</span></div>
-  <div class="step"><span class="sn">4</span><span>dy/dx=2·d/dx(tan⁻¹x)=2/(1+x²)</span></div>
-  <div class="fml">dy/dx = 2/(1+x²)</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">If y=(logx)ˣ, find dy/dx.</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2021,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Take ln: ln y=x·ln(ln x)</span></div>
-  <div class="step"><span class="sn">2</span><span>Differentiate: (1/y)·dy/dx=ln(ln x)+x·(1/ln x)·(1/x)=ln(ln x)+1/ln x</span></div>
-  <div class="step"><span class="sn">3</span><span>dy/dx=y·[ln(log x)+1/log x]</span></div>
-  <div class="fml">dy/dx = (logx)ˣ · [log(logx) + 1/logx]</div>
-  </div></div>
-</div>
-
-<div class="card long-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Long Ans</span>
-  <div class="cq">Verify Rolle's Theorem for f(x)=x²−4x+3 on [1,3].</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2023,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="hl"><strong>Rolle's Theorem:</strong> If f is continuous on [a,b], differentiable on (a,b), and f(a)=f(b), then ∃c∈(a,b) with f'(c)=0.</div>
-  <div class="step"><span class="sn">1</span><span>f is polynomial → continuous on [1,3] and differentiable on (1,3). ✓</span></div>
-  <div class="step"><span class="sn">2</span><span>f(1)=1−4+3=0, f(3)=9−12+3=0. f(1)=f(3) ✓</span></div>
-  <div class="step"><span class="sn">3</span><span>f'(x)=2x−4=0 → x=2</span></div>
-  <div class="step"><span class="sn">4</span><span>c=2∈(1,3) ✓</span></div>
-  <div class="fml">Rolle's Theorem verified. c = 2</div>
-  </div></div>
-</div>
-</section>
-
-<!-- ═══════════════════════════════════ 9. APPLICATIONS OF DERIVATIVES ═══════════════════════════════════ -->
-<section class="topic" id="appd">
-<div class="topic-hdr"><span class="t-num">09</span><h2>Applications of Derivatives</h2><span class="t-marks">~12 Marks</span></div>
-<div class="formula-banner">Increasing: f'(x)>0 | Decreasing: f'(x)&lt;0 | Local max: f'(c)=0 and f''(c)&lt;0 | Local min: f'(c)=0 and f''(c)>0 | Rate of change: chain rule dy/dt=(dy/dx)·(dx/dt) | Tangent slope=dy/dx at point | Normal slope=−1/(dy/dx)</div>
-
-<div class="sub-lbl">MCQ</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">f(x)=x³−3x is decreasing in interval:<br>(a) (−∞,−1) &nbsp;(b) (−1,1) &nbsp;(c) (1,∞) &nbsp;(d) (0,1)</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)</div><div class="ok">✓ (b) (−1,1)</div><div class="no">(c)</div><div class="no">(d)</div></div>
-  <p>f'(x)=3x²−3=3(x−1)(x+1). f'(x)&lt;0 when −1&lt;x&lt;1 → <strong>decreasing on (−1,1)</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">Maximum value of f(x)=sinx+cosx is:<br>(a) 1 &nbsp;(b) 2 &nbsp;(c) √2 &nbsp;(d) √3</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="no">(a)1</div><div class="no">(b)2</div><div class="ok">✓ (c) √2</div><div class="no">(d)√3</div></div>
-  <p>Max of (a·sinx+b·cosx)=√(a²+b²)=√(1+1)=<strong>√2</strong></p>
-  </div></div>
-</div>
-
-<div class="card mcq-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">MCQ</span>
-  <div class="cq">Sphere expanding, radius increases at 2 cm/s. Rate of volume increase when r=3 cm:<br>(a) 72π &nbsp;(b) 36π &nbsp;(c) 18π &nbsp;(d) 54π</div>
-  <div class="cm">1M<span class="rtag">🔁 R (2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Answer</div><div class="ab">
-  <div class="opts"><div class="ok">✓ (a) 72π</div><div class="no">(b)36π</div><div class="no">(c)18π</div><div class="no">(d)54π</div></div>
-  <p>V=4/3·πr³. dV/dt=4πr²·(dr/dt)=4π(9)(2)=72π</p>
-  </div></div>
-</div>
-
-<div class="sub-lbl">Solved Problems — MOST IMPORTANT</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find local max and min of f(x)=x³−3x²−9x+27.</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2024,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>f'(x)=3x²−6x−9=3(x²−2x−3)=3(x−3)(x+1)=0 → x=3 or x=−1</span></div>
-  <div class="step"><span class="sn">2</span><span>f''(x)=6x−6</span></div>
-  <div class="step"><span class="sn">3</span><span>x=−1: f''(−1)=−12&lt;0 → <strong>LOCAL MAX</strong>. f(−1)=−1−3+9+27=<strong>32</strong></span></div>
-  <div class="step"><span class="sn">4</span><span>x=3: f''(3)=12>0 → <strong>LOCAL MIN</strong>. f(3)=27−27−27+27=<strong>0</strong></span></div>
-  <div class="fml">Local Maximum = 32 at x=−1 | Local Minimum = 0 at x=3</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">A 10m ladder rests against wall. Bottom slides at 1 m/s. How fast is top descending when bottom is 6m from wall?</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2023,2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>x²+y²=100. Diff w.r.t. t: 2x(dx/dt)+2y(dy/dt)=0</span></div>
-  <div class="step"><span class="sn">2</span><span>When x=6: y=√(100−36)=8</span></div>
-  <div class="step"><span class="sn">3</span><span>2(6)(1)+2(8)(dy/dt)=0 → 12+16(dy/dt)=0</span></div>
-  <div class="fml">dy/dt = −3/4 m/s  (top descends at 0.75 m/s)</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Maximum area rectangle inscribed in circle of radius r.</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2022,2024)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Let half-sides be x,y. Constraint: x²+y²=r². Area A=4xy</span></div>
-  <div class="step"><span class="sn">2</span><span>A²=16x²y²=16x²(r²−x²). Let u=x²: d(A²)/du=16(r²−2u)=0 → u=r²/2</span></div>
-  <div class="step"><span class="sn">3</span><span>x=r/√2=y. So 2x=2y=r√2 → it's a <strong>square</strong> with side r√2</span></div>
-  <div class="fml">Rectangle is a square, side = r√2, Maximum Area = 2r²</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Circular ripple: radius increases at 5 cm/s. Find rate of area increase when r=10 cm.</div>
-  <div class="cm">3M<span class="rtag">🔁 R (2023,2022)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>A=πr². dA/dt=2πr·(dr/dt)=2π(10)(5)</span></div>
-  <div class="fml">dA/dt = 100π cm²/s ≈ 314 cm²/s</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find tangent and normal to y=x²+3x−4 at x=1.</div>
-  <div class="cm">4M<span class="rtag">🔁 R (2021)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>y(1)=1+3−4=0. Point: (1,0)</span></div>
-  <div class="step"><span class="sn">2</span><span>dy/dx=2x+3. Slope at x=1: m=5</span></div>
-  <div class="step"><span class="sn">3</span><span>Tangent: y−0=5(x−1) → y=5x−5</span></div>
-  <div class="step"><span class="sn">4</span><span>Normal slope=−1/5. y=−(1/5)(x−1) → x+5y=1</span></div>
-  <div class="fml">Tangent: y=5x−5  |  Normal: x+5y=1</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Show f(x)=2x³−9x²+12x−5 is increasing on (2,∞) and decreasing on (1,2).</div>
-  <div class="cm">5M<span class="rtag">🔁 R (2021,2023)</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>f'(x)=6x²−18x+12=6(x²−3x+2)=6(x−1)(x−2)</span></div>
-  <div class="step"><span class="sn">2</span><span>x>2: both factors positive → f'(x)>0 → <strong>INCREASING</strong></span></div>
-  <div class="step"><span class="sn">3</span><span>1&lt;x&lt;2: (x−1)>0 but (x−2)&lt;0 → f'(x)&lt;0 → <strong>DECREASING</strong></span></div>
-  <div class="step"><span class="sn">4</span><span>x&lt;1: both factors negative → f'(x)>0 → INCREASING</span></div>
-  <div class="fml">Increasing: (−∞,1)∪(2,∞)  |  Decreasing: (1,2)</div>
-  </div></div>
-</div>
-</section>
-
-<!-- ═══════════════════════════════════ 10. INTEGRATION (EXTRA) ═══════════════════════════════════ -->
-<section class="topic" id="intg">
-<div class="topic-hdr"><span class="t-num">10</span><h2>Integration (Key Problems)</h2><span class="t-marks">~12 Marks</span></div>
-<div class="formula-banner">∫xⁿ=xⁿ⁺¹/(n+1)+C | ∫eˣ=eˣ+C | ∫1/x=lnx+C | ∫sinx=−cosx+C | ∫cosx=sinx+C | By parts: ∫uv=u∫v−∫(u'∫v) | ILATE: I=inverse, L=log, A=algebraic, T=trig, E=exp</div>
-
-<div class="sub-lbl">Key Integration Problems</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Evaluate: ∫ x·eˣ dx</div>
-  <div class="cm">4M<span class="rtag">🔁 High Freq</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <p>Integration by parts. ILATE: u=x (A), v=eˣ (E)</p>
-  <div class="step"><span class="sn">1</span><span>∫x·eˣdx=x·eˣ−∫1·eˣdx</span></div>
-  <div class="fml">∫x·eˣ dx = eˣ(x−1) + C</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Evaluate: ∫ 1/(x²+a²) dx and ∫ 1/√(a²−x²) dx</div>
-  <div class="cm">3M<span class="rtag">🔁 High Freq</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="fml">∫ 1/(x²+a²) dx = (1/a)·tan⁻¹(x/a) + C
-∫ 1/√(a²−x²) dx = sin⁻¹(x/a) + C</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Evaluate: ∫₀^(π/2) sin²x dx</div>
-  <div class="cm">4M<span class="rtag">🔁 High Freq</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>sin²x=(1−cos2x)/2</span></div>
-  <div class="step"><span class="sn">2</span><span>∫₀^(π/2)(1−cos2x)/2 dx=[x/2−sin2x/4]₀^(π/2)</span></div>
-  <div class="step"><span class="sn">3</span><span>=(π/4−0)−(0−0)=π/4</span></div>
-  <div class="fml">∫₀^(π/2) sin²x dx = π/4</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Evaluate using substitution: ∫ 2x/(1+x²) dx</div>
-  <div class="cm">3M<span class="rtag">🔁 High Freq</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Let t=1+x², dt=2x·dx</span></div>
-  <div class="step"><span class="sn">2</span><span>∫dt/t=ln|t|+C=ln|1+x²|+C</span></div>
-  <div class="fml">∫ 2x/(1+x²) dx = ln(1+x²) + C</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Find the area enclosed between y=x² and y=x (from x=0 to x=1).</div>
-  <div class="cm">5M<span class="rtag">🔁 High Freq</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>Intersections: x²=x → x=0,1. For 0≤x≤1: x>x²</span></div>
-  <div class="step"><span class="sn">2</span><span>Area=∫₀¹(x−x²)dx=[x²/2−x³/3]₀¹=1/2−1/3=1/6</span></div>
-  <div class="fml">Area = 1/6 square units</div>
-  </div></div>
-</div>
-
-<div class="card num-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Problem</span>
-  <div class="cq">Evaluate using partial fractions: ∫ (2x+1)/[(x+1)(x−2)] dx</div>
-  <div class="cm">5M<span class="rtag">🔁 High Freq</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Solution</div><div class="ab">
-  <div class="step"><span class="sn">1</span><span>(2x+1)/[(x+1)(x−2)]=A/(x+1)+B/(x−2)</span></div>
-  <div class="step"><span class="sn">2</span><span>2x+1=A(x−2)+B(x+1). x=2: 5=3B→B=5/3. x=−1: −1=−3A→A=1/3</span></div>
-  <div class="step"><span class="sn">3</span><span>∫[(1/3)/(x+1)+(5/3)/(x−2)]dx</span></div>
-  <div class="fml">= (1/3)ln|x+1| + (5/3)ln|x−2| + C</div>
-  </div></div>
-</div>
-</section>
-
-<!-- ═══════════════════════════════════ QUICK FORMULAS ═══════════════════════════════════ -->
-<section class="topic" id="trig">
-<div class="topic-hdr"><span class="t-num">+</span><h2>Quick Formula Sheets: Trig, Coord Geo, Prob, Vectors</h2><span class="t-marks">Reference</span></div>
-
-<div class="sub-lbl">Trigonometry — Must Know Identities</div>
-
-<div class="card theory-c">
-  <div class="ch" onclick="tog(this)"><span class="ct">Theory</span>
-  <div class="cq">Write all standard trig identities: Pythagorean, compound, double angle, half angle, sum-to-product.</div>
-  <div class="cm">5M<span class="rtag">🔁 R High Freq</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Master Sheet</div><div class="ab">
-  <p><strong>Pythagorean:</strong></p>
-  <div class="fml">sin²θ+cos²θ=1 | 1+tan²θ=sec²θ | 1+cot²θ=cosec²θ</div>
-  <p><strong>Compound Angles:</strong></p>
-  <div class="fml">sin(A±B)=sinA·cosB±cosA·sinB
-cos(A±B)=cosA·cosB∓sinA·sinB
-tan(A±B)=(tanA±tanB)/(1∓tanA·tanB)</div>
-  <p><strong>Double Angle:</strong></p>
-  <div class="fml">sin2A=2sinAcosA | cos2A=cos²A−sin²A=1−2sin²A=2cos²A−1
-tan2A=2tanA/(1−tan²A)</div>
-  <p><strong>Half Angle (from cos2A):</strong></p>
-  <div class="fml">sin²A=(1−cos2A)/2 | cos²A=(1+cos2A)/2</div>
-  <p><strong>Sum-to-Product:</strong></p>
-  <div class="fml">sinA+sinB=2sin((A+B)/2)cos((A−B)/2)
-cosA+cosB=2cos((A+B)/2)cos((A−B)/2)</div>
-  </div></div>
-</div>
-
-<div class="card theory-c" id="coord">
-  <div class="ch" onclick="tog(this)"><span class="ct">Theory</span>
-  <div class="cq">Key Coordinate Geometry Formulas: slope, distance, point-to-line, section formula, circle.</div>
-  <div class="cm">5M</div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Master Sheet</div><div class="ab">
-  <div class="fml">Slope: m=(y₂−y₁)/(x₂−x₁)
-Distance: √((x₂−x₁)²+(y₂−y₁)²)
-Section (m:n): ((mx₂+nx₁)/(m+n), (my₂+ny₁)/(m+n))
-Point to line ax+by+c=0: d=|ax₁+by₁+c|/√(a²+b²)
-Angle between lines: tanθ=|(m₁−m₂)/(1+m₁m₂)|
-Circle std: x²+y²=r² | General: x²+y²+2gx+2fy+c=0 | Centre:(−g,−f), r=√(g²+f²−c)
-Slope forms: y=mx+c | Point-slope: y−y₁=m(x−x₁)</div>
-  </div></div>
-</div>
-
-<div class="card theory-c" id="prob">
-  <div class="ch" onclick="tog(this)"><span class="ct">Theory</span>
-  <div class="cq">Key Probability formulas and important results.</div>
-  <div class="cm">5M<span class="rtag">🔁 High Freq</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Master Sheet</div><div class="ab">
-  <div class="fml">P(A∪B)=P(A)+P(B)−P(A∩B)
-Mutually exclusive: P(A∪B)=P(A)+P(B)
-Conditional: P(A|B)=P(A∩B)/P(B)
-Independent: P(A∩B)=P(A)·P(B)
-Bayes' theorem: P(Aᵢ|B)=P(B|Aᵢ)P(Aᵢ)/ΣP(B|Aⱼ)P(Aⱼ)</div>
-  <p><strong>Two dice (36 outcomes):</strong></p>
-  <div class="fml">P(sum=7)=6/36=1/6 | P(doublets)=6/36=1/6 | P(sum≥10)=6/36=1/6
-P(even sum)=18/36=1/2</div>
-  <p><strong>Mean & Variance:</strong></p>
-  <div class="fml">Mean x̄=Σxᵢ/n | Variance σ²=Σ(xᵢ−x̄)²/n | SD=√σ²</div>
-  </div></div>
-</div>
-
-<div class="card theory-c" id="vec">
-  <div class="ch" onclick="tog(this)"><span class="ct">Theory</span>
-  <div class="cq">Key Vector formulas: dot product, cross product, angle.</div>
-  <div class="cm">4M<span class="rtag">🔁 High Freq</span></div><button class="ctoggle">▼</button></div>
-  <div class="ca"><div class="albl">Master Sheet</div><div class="ab">
-  <div class="fml">Dot product: a⃗·b⃗=|a||b|cosθ=a₁b₁+a₂b₂+a₃b₃
-Cross product: |a⃗×b⃗|=|a||b|sinθ (use determinant form)
-Angle: cosθ=(a⃗·b⃗)/(|a⃗||b⃗|)
-a⃗⊥b⃗ ⟺ a⃗·b⃗=0 | a⃗∥b⃗ ⟺ a⃗×b⃗=0⃗
-|a⃗+b⃗|²=|a⃗|²+|b⃗|²+2a⃗·b⃗
-Projection of a⃗ on b⃗ = (a⃗·b⃗)/|b⃗|</div>
-  </div></div>
-</div>
-</section>
-
-</div><!-- /.wrap -->
-
-<footer>
-  <p><strong style="color:var(--text)">NIOS Mathematics 311 · PYQ Master Guide · April 2026</strong></p>
-  <p style="margin-top:6px">Built from PYQs 2015–2025 · 🔁 R = Repeated 3+ times = Most likely to appear</p>
-  <p style="margin-top:8px;color:#3a3c4a">Press <strong style="color:var(--gold)">E</strong> to expand all · <strong style="color:var(--gold)">C</strong> to collapse · Ctrl+P to print</p>
-</footer>
+<!-- ═══════════════ MAIN ═══════════════ -->
+<main id="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>NIOS Mathematics (311)<br>Strategic Question Bank</h1>
+    <p>Curated PYQs + high-probability questions. Master these and you're targeting 90%+. Click any question to reveal the answer.</p>
+    <div class="legend">
+      <div class="legend-item"><span class="hot-star">⭐</span> Must-do question</div>
+      <div class="legend-item"><span class="pyq-label">PYQ</span> Appeared in past exams</div>
+      <div class="legend-item"><span class="q-type-badge badge-num" style="font-size:0.6rem">NUM</span> Step-by-step solution</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 1: SETS, RELATIONS & FUNCTIONS
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch1">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 01</div>
+      <div class="chapter-title">Sets, Relations &amp; Functions</div>
+      <div class="chapter-meta">Expected Marks: 10–14 | Difficulty: ★★☆</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Key Formulas</h4>
+      <div class="formula-grid">
+        <div class="formula-item">n(A∪B) = n(A)+n(B)−n(A∩B)</div>
+        <div class="formula-item">n(A∪B∪C) = n(A)+n(B)+n(C)−n(A∩B)−n(B∩C)−n(A∩C)+n(A∩B∩C)</div>
+        <div class="formula-item">A−B = A∩B'</div>
+        <div class="formula-item">De Morgan: (A∪B)' = A'∩B'</div>
+        <div class="formula-item">Domain of fog = domain of g restricted to range of g ⊆ domain of f</div>
+        <div class="formula-item">Even: f(−x)=f(x), Odd: f(−x)=−f(x)</div>
+      </div>
+    </div>
+
+    <div class="section-label">MCQs</div>
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-mcq">MCQ</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">If n(A) = 3, n(B) = 5, n(A∩B) = 2, then n(A∪B) = ?<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">1M</span>
+        </div>
+        <div class="mcq-options">
+          <div class="mcq-opt">(a) 6</div>
+          <div class="mcq-opt correct">(b) 6 ✓</div>
+          <div class="mcq-opt">(c) 8</div>
+          <div class="mcq-opt">(d) 10</div>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling.previousElementSibling)">▶ Show Answer</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Answer</div>
+          <div class="answer-text">
+            Using: <span class="math">n(A∪B) = n(A) + n(B) − n(A∩B)</span><br>
+            = 3 + 5 − 2 = <strong>6</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-mcq">MCQ</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Which of the following is NOT a function?<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">1M</span>
+        </div>
+        <div class="mcq-options">
+          <div class="mcq-opt">(a) f(x) = x²</div>
+          <div class="mcq-opt">(b) f(x) = √x, x≥0</div>
+          <div class="mcq-opt correct">(c) x² + y² = 9 ✓</div>
+          <div class="mcq-opt">(d) f(x) = |x|</div>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling.previousElementSibling)">▶ Show Answer</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Answer: (c)</div>
+          <div class="answer-text">
+            <span class="math">x² + y² = 9</span> is a circle. For a given x (e.g. x=0), y = ±3 — two values. A function must assign exactly one output per input. So this is NOT a function.
+            <div class="tip-box"><b>Tip:</b> Vertical Line Test — if a vertical line crosses the graph more than once → NOT a function.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-mcq">MCQ</span>
+          <div class="q-text">If A = {1,2,3} and B = {2,3,4}, then A−B = ?</div>
+          <span class="q-marks">1M</span>
+        </div>
+        <div class="mcq-options">
+          <div class="mcq-opt correct">(a) {1} ✓</div>
+          <div class="mcq-opt">(b) {4}</div>
+          <div class="mcq-opt">(c) {2,3}</div>
+          <div class="mcq-opt">(d) {1,4}</div>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling.previousElementSibling)">▶ Show Answer</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Answer: (a)</div>
+          <div class="answer-text">A−B = elements in A but NOT in B = {1}</div>
+        </div>
+      </div>
+
+      <div class="section-label">Numerical / Long Answer</div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">In a survey of 400 students, 100 take Mathematics, 150 take Science, 75 take both. Find how many take at least one subject, and how many take neither.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Step-by-Step Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Given: n(M)=100, n(S)=150, n(M∩S)=75, Total=400</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">n(M∪S) = n(M) + n(S) − n(M∩S) = 100 + 150 − 75 = <strong>175</strong></span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">Neither = 400 − n(M∪S) = 400 − 175 = <strong>225</strong></span></div>
+            <div class="result-box">At least one subject: 175 | Neither: 225</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-long">LONG</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">If f(x) = 2x+3 and g(x) = x²−1, find (i) fog(x) (ii) gof(x) (iii) fog(2)<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">6M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">i</span><span class="step-content"><b>fog(x)</b> = f(g(x)) = f(x²−1) = 2(x²−1)+3 = <strong>2x²+1</strong></span></div>
+            <div class="step"><span class="step-num">ii</span><span class="step-content"><b>gof(x)</b> = g(f(x)) = g(2x+3) = (2x+3)²−1 = 4x²+12x+9−1 = <strong>4x²+12x+8</strong></span></div>
+            <div class="step"><span class="step-num">iii</span><span class="step-content"><b>fog(2)</b> = 2(2)²+1 = 8+1 = <strong>9</strong></span></div>
+            <div class="tip-box"><b>Note:</b> fog ≠ gof in general. Composition is NOT commutative.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-theory">THEORY</span>
+          <div class="q-text">Define (i) One-one function (ii) Onto function (iii) Bijective function. Give one example each.</div>
+          <span class="q-marks">6M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Answer</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Answer</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content"><b>One-one (Injective):</b> f(x₁)=f(x₂) ⟹ x₁=x₂. No two elements map to the same output. <br>Example: f(x)=2x on ℝ.</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content"><b>Onto (Surjective):</b> Every element in the codomain has a pre-image. Range = Codomain.<br>Example: f(x)=x³ from ℝ→ℝ.</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content"><b>Bijective:</b> Both one-one and onto. Inverse exists.<br>Example: f(x)=x+3 from ℝ→ℝ.</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 2: SEQUENCES & SERIES
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch2">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 02</div>
+      <div class="chapter-title">Sequences &amp; Series (AP, GP, HP)</div>
+      <div class="chapter-meta">Expected Marks: 12–16 | Difficulty: ★★★ — Very High Frequency</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Must-Know Formulas</h4>
+      <div class="formula-grid">
+        <div class="formula-item">AP: aₙ = a+(n−1)d</div>
+        <div class="formula-item">AP Sₙ = n/2[2a+(n−1)d]</div>
+        <div class="formula-item">GP: aₙ = arⁿ⁻¹</div>
+        <div class="formula-item">GP Sₙ = a(rⁿ−1)/(r−1), r≠1</div>
+        <div class="formula-item">GP S∞ = a/(1−r), |r|&lt;1</div>
+        <div class="formula-item">AM = (a+b)/2, GM = √(ab), HM = 2ab/(a+b)</div>
+        <div class="formula-item">AM ≥ GM ≥ HM</div>
+        <div class="formula-item">∑n = n(n+1)/2</div>
+        <div class="formula-item">∑n² = n(n+1)(2n+1)/6</div>
+        <div class="formula-item">∑n³ = [n(n+1)/2]²</div>
+      </div>
+    </div>
+
+    <div class="section-label">MCQs</div>
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-mcq">MCQ</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">The 10th term of the AP: 3, 7, 11, 15,... is<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">1M</span>
+        </div>
+        <div class="mcq-options">
+          <div class="mcq-opt">(a) 37</div>
+          <div class="mcq-opt">(b) 40</div>
+          <div class="mcq-opt correct">(c) 39 ✓</div>
+          <div class="mcq-opt">(d) 41</div>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling.previousElementSibling)">▶ Show Answer</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Answer: (c) 39</div>
+          <div class="answer-text">a=3, d=4, n=10<br>aₙ = 3 + (10−1)×4 = 3 + 36 = <strong>39</strong></div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-mcq">MCQ</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">The sum of infinite GP with first term 1 and common ratio 1/2 is<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">1M</span>
+        </div>
+        <div class="mcq-options">
+          <div class="mcq-opt">(a) 1</div>
+          <div class="mcq-opt">(b) 3/2</div>
+          <div class="mcq-opt correct">(c) 2 ✓</div>
+          <div class="mcq-opt">(d) 4</div>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling.previousElementSibling)">▶ Show Answer</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Answer: (c)</div>
+          <div class="answer-text">S∞ = a/(1−r) = 1/(1−1/2) = 1/(1/2) = <strong>2</strong></div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-mcq">MCQ</span>
+          <div class="q-text">If AM of two numbers is 10 and GM is 8, then the numbers are</div>
+          <span class="q-marks">1M</span>
+        </div>
+        <div class="mcq-options">
+          <div class="mcq-opt">(a) 8, 12</div>
+          <div class="mcq-opt">(b) 6, 14</div>
+          <div class="mcq-opt correct">(c) 4, 16 ✓</div>
+          <div class="mcq-opt">(d) 2, 18</div>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling.previousElementSibling)">▶ Show Answer</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Answer: (c)</div>
+          <div class="answer-text">AM=10 → a+b=20. GM=8 → ab=64. Solving: x²−20x+64=0 → (x−4)(x−16)=0 → <strong>4, 16</strong></div>
+        </div>
+      </div>
+
+      <div class="section-label">Numericals</div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the sum of first 20 terms of the AP: 5, 8, 11, 14,...<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Step-by-Step</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Identify: a=5, d=8−5=3, n=20</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">Sₙ = n/2 × [2a + (n−1)d] = 20/2 × [2×5 + 19×3]</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">= 10 × [10 + 57] = 10 × 67 = <strong>670</strong></span></div>
+            <div class="result-box">S₂₀ = 670</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">The 3rd term of a GP is 4 and 6th term is 32. Find the first term and common ratio.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Let first term = a, common ratio = r<br>a₃ = ar² = 4 ... (i)<br>a₆ = ar⁵ = 32 ... (ii)</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">Dividing (ii) by (i): r³ = 32/4 = 8 → r = 2</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">From (i): a×4 = 4 → a = 1</span></div>
+            <div class="result-box">First term a = 1, Common ratio r = 2</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the sum: 1² + 2² + 3² + ... + 15²<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">∑n² = n(n+1)(2n+1)/6, here n=15</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">= 15×16×31/6 = 15×16×31/6</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">= (15×16×31)/6 = 7440/6 = <strong>1240</strong></span></div>
+            <div class="result-box">Sum = 1240</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 3: TRIGONOMETRY
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch3">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 03</div>
+      <div class="chapter-title">Trigonometry</div>
+      <div class="chapter-meta">Expected Marks: 12–18 | Difficulty: ★★★ — Most Important Chapter</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Essential Formulas</h4>
+      <div class="formula-grid">
+        <div class="formula-item">sin²θ + cos²θ = 1</div>
+        <div class="formula-item">1 + tan²θ = sec²θ</div>
+        <div class="formula-item">1 + cot²θ = cosec²θ</div>
+        <div class="formula-item">sin(A±B) = sinAcosB ± cosAsinB</div>
+        <div class="formula-item">cos(A±B) = cosAcosB ∓ sinAsinB</div>
+        <div class="formula-item">tan(A+B) = (tanA+tanB)/(1−tanAtanB)</div>
+        <div class="formula-item">sin2A = 2sinAcosA</div>
+        <div class="formula-item">cos2A = cos²A−sin²A = 1−2sin²A = 2cos²A−1</div>
+        <div class="formula-item">tan2A = 2tanA/(1−tan²A)</div>
+        <div class="formula-item">sinC+sinD = 2sin((C+D)/2)cos((C−D)/2)</div>
+        <div class="formula-item">cosC+cosD = 2cos((C+D)/2)cos((C−D)/2)</div>
+        <div class="formula-item">a/sinA = b/sinB = c/sinC (Sine Rule)</div>
+        <div class="formula-item">c² = a²+b²−2ab·cosC (Cosine Rule)</div>
+      </div>
+    </div>
+
+    <div class="section-label">MCQs</div>
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-mcq">MCQ</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">The value of sin 30° + cos 60° is<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">1M</span>
+        </div>
+        <div class="mcq-options">
+          <div class="mcq-opt correct">(a) 1 ✓</div>
+          <div class="mcq-opt">(b) √3</div>
+          <div class="mcq-opt">(c) 1/2</div>
+          <div class="mcq-opt">(d) √3/2</div>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling.previousElementSibling)">▶ Show Answer</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Answer: (a)</div>
+          <div class="answer-text">sin30° = 1/2, cos60° = 1/2 → sum = 1</div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-mcq">MCQ</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">If tanθ = 3/4, then sinθ = ?<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">1M</span>
+        </div>
+        <div class="mcq-options">
+          <div class="mcq-opt">(a) 3/5</div>
+          <div class="mcq-opt">(b) 4/5</div>
+          <div class="mcq-opt correct">(c) 3/5 ✓</div>
+          <div class="mcq-opt">(d) 4/3</div>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling.previousElementSibling)">▶ Show Answer</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Answer: 3/5</div>
+          <div class="answer-text">tanθ=3/4 means opp=3, adj=4, hyp=5.<br>sinθ = 3/5</div>
+        </div>
+      </div>
+
+      <div class="section-label">Numericals</div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Prove that: sin(A+B)·sin(A−B) = sin²A − sin²B<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Proof</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Proof</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">LHS</span><span class="step-content">sin(A+B)·sin(A−B)<br>= (sinAcosB + cosAsinB)(sinAcosB − cosAsinB)</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">= sin²Acos²B − cos²Asin²B<br>= sin²A(1−sin²B) − (1−sin²A)sin²B</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">= sin²A − sin²Asin²B − sin²B + sin²Asin²B<br>= sin²A − sin²B = RHS ∎</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find all values of θ in [0°, 360°] satisfying: 2sin²θ − sinθ − 1 = 0<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Factor: 2sin²θ − sinθ − 1 = 0<br>(2sinθ + 1)(sinθ − 1) = 0</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">Case 1: sinθ = 1 → θ = 90°</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">Case 2: sinθ = −1/2 → θ = 210°, 330°</span></div>
+            <div class="result-box">θ = 90°, 210°, 330°</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Prove: (sinA + cosA)² = 1 + sin2A<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Proof</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Proof</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">LHS</span><span class="step-content">(sinA + cosA)² = sin²A + 2sinAcosA + cos²A</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">= (sin²A + cos²A) + 2sinAcosA = 1 + sin2A = RHS ∎</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <div class="q-text">If sinA = 12/13 (A in 1st quadrant), find cos2A and sin2A.</div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">sinA = 12/13 → cosA = 5/13 (1st quadrant, positive)</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">cos2A = 1 − 2sin²A = 1 − 2(144/169) = 1 − 288/169 = −119/169</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">sin2A = 2sinAcosA = 2×(12/13)×(5/13) = 120/169</span></div>
+            <div class="result-box">cos2A = −119/169, sin2A = 120/169</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 4: COMPLEX NUMBERS
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch4">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 04</div>
+      <div class="chapter-title">Complex Numbers</div>
+      <div class="chapter-meta">Expected Marks: 8–12 | Difficulty: ★★☆</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Key Formulas</h4>
+      <div class="formula-grid">
+        <div class="formula-item">z = a + bi, i² = −1</div>
+        <div class="formula-item">|z| = √(a²+b²)</div>
+        <div class="formula-item">z̄ = a − bi (conjugate)</div>
+        <div class="formula-item">z·z̄ = |z|²</div>
+        <div class="formula-item">Modulus-Argument: z = r(cosθ + i sinθ)</div>
+        <div class="formula-item">Argument θ = tan⁻¹(b/a)</div>
+        <div class="formula-item">Division: multiply by conjugate of denominator</div>
+      </div>
+    </div>
+
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-mcq">MCQ</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">The modulus of z = 3 + 4i is<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">1M</span>
+        </div>
+        <div class="mcq-options">
+          <div class="mcq-opt">(a) 3</div>
+          <div class="mcq-opt">(b) 4</div>
+          <div class="mcq-opt correct">(c) 5 ✓</div>
+          <div class="mcq-opt">(d) 7</div>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling.previousElementSibling)">▶ Show Answer</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Answer: (c)</div>
+          <div class="answer-text">|z| = √(3²+4²) = √(9+16) = √25 = <strong>5</strong></div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Express (2+3i)/(1−2i) in the form a+bi.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Multiply numerator and denominator by conjugate of denominator (1+2i):<br>(2+3i)(1+2i) / [(1−2i)(1+2i)]</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">Numerator: 2+4i+3i+6i² = 2+7i+6(−1) = −4+7i</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">Denominator: 1+4 = 5</span></div>
+            <div class="step"><span class="step-num">4</span><span class="step-content">Result: (−4+7i)/5 = −4/5 + (7/5)i</span></div>
+            <div class="result-box">a = −4/5, b = 7/5</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the square roots of the complex number −7 + 24i.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">5M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Let √(−7+24i) = a+bi<br>So (a+bi)² = −7+24i<br>a²−b² = −7 ...(i), 2ab = 24 → ab = 12 ...(ii)</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">(a²+b²)² = (a²−b²)² + (2ab)² = 49 + 576 = 625<br>→ a²+b² = 25 ...(iii)</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">From (i)+(iii): 2a²=18 → a=3 or a=−3<br>From (ii): b=12/a → b=4 or b=−4</span></div>
+            <div class="result-box">√(−7+24i) = ±(3 + 4i)</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 5: MATRICES & DETERMINANTS
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch5">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 05</div>
+      <div class="chapter-title">Matrices &amp; Determinants</div>
+      <div class="chapter-meta">Expected Marks: 14–18 | Difficulty: ★★★ — High Value</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Key Points</h4>
+      <div class="formula-grid">
+        <div class="formula-item">|A| for 2×2: ad−bc</div>
+        <div class="formula-item">|A| for 3×3: expand along any row/column</div>
+        <div class="formula-item">A⁻¹ = (1/|A|) × adj(A)</div>
+        <div class="formula-item">adj(A) = transpose of cofactor matrix</div>
+        <div class="formula-item">A·A⁻¹ = I (identity)</div>
+        <div class="formula-item">|AB| = |A|·|B|</div>
+        <div class="formula-item">Cramer's Rule: x=Dₓ/D, y=Dᵧ/D</div>
+        <div class="formula-item">(AB)ᵀ = BᵀAᵀ</div>
+      </div>
+    </div>
+
+    <div class="section-label">MCQs</div>
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-mcq">MCQ</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">The determinant of matrix A = [[2,3],[1,4]] is<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">1M</span>
+        </div>
+        <div class="mcq-options">
+          <div class="mcq-opt">(a) 7</div>
+          <div class="mcq-opt">(b) 3</div>
+          <div class="mcq-opt">(c) 11</div>
+          <div class="mcq-opt correct">(d) 5 ✓</div>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling.previousElementSibling)">▶ Show Answer</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Answer: (d)</div>
+          <div class="answer-text">|A| = 2×4 − 3×1 = 8 − 3 = <strong>5</strong></div>
+        </div>
+      </div>
+
+      <div class="section-label">Numericals</div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the inverse of the matrix A = [[1,2],[3,4]].<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">5M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">|A| = 1×4 − 2×3 = 4 − 6 = −2 (≠0, so invertible)</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">adj(A) = [[4,−2],[−3,1]]  (swap diagonal, negate off-diagonal)</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">A⁻¹ = (1/|A|) × adj(A) = (1/−2) × [[4,−2],[−3,1]]</span></div>
+            <div class="math-block">A⁻¹ = [[-2,   1  ],
+       [ 3/2, -1/2]]</div>
+            <div class="result-box">A⁻¹ = [[−2, 1], [3/2, −1/2]]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Solve using Cramer's Rule: 2x + 3y = 8, x − y = 1<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">5M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">D = |2, 3; 1, −1| = 2(−1)−3(1) = −2−3 = −5</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">Dₓ = |8, 3; 1, −1| = 8(−1)−3(1) = −8−3 = −11<br>x = Dₓ/D = −11/−5 = 11/5</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">Dᵧ = |2, 8; 1, 1| = 2(1)−8(1) = −6<br>y = Dᵧ/D = −6/−5 = 6/5</span></div>
+            <div class="result-box">x = 11/5, y = 6/5</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Evaluate the 3×3 determinant: |1,2,3; 4,5,6; 7,8,9|<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Expand along R1:<br>= 1(5×9−6×8) − 2(4×9−6×7) + 3(4×8−5×7)</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">= 1(45−48) − 2(36−42) + 3(32−35)<br>= 1(−3) − 2(−6) + 3(−3)</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">= −3 + 12 − 9 = <strong>0</strong></span></div>
+            <div class="result-box">Determinant = 0 (rows are in AP, so linearly dependent)</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 6: PERMUTATIONS & COMBINATIONS
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch6">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 06</div>
+      <div class="chapter-title">Permutations &amp; Combinations</div>
+      <div class="chapter-meta">Expected Marks: 8–12 | Difficulty: ★★☆</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Key Formulas</h4>
+      <div class="formula-grid">
+        <div class="formula-item">nPr = n!/(n−r)!</div>
+        <div class="formula-item">nCr = n!/[r!(n−r)!]</div>
+        <div class="formula-item">nCr = nC(n−r)</div>
+        <div class="formula-item">nC0 = nCn = 1</div>
+        <div class="formula-item">nCr + nC(r−1) = (n+1)Cr</div>
+        <div class="formula-item">Arrangements with repetition: nʳ</div>
+        <div class="formula-item">Circular: (n−1)!</div>
+      </div>
+    </div>
+
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">How many ways can 5 people be arranged in a row? In a circle?<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">In a row: 5! = 5×4×3×2×1 = <strong>120 ways</strong></span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">In a circle: (5−1)! = 4! = <strong>24 ways</strong></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">A committee of 3 is to be chosen from 5 men and 3 women such that it has at least 1 woman. Find the number of ways.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Total ways without restriction: 8C3 = 56</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">Ways with NO woman (all men): 5C3 = 10</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">At least 1 woman = 56 − 10 = <strong>46</strong></span></div>
+            <div class="result-box">46 ways</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <div class="q-text">Find the value of n if ⁿC₈ = ⁿC₁₂.</div>
+          <span class="q-marks">2M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            nCr = nC(n−r), so if nC₈ = nC₁₂ then either 8=12 (impossible) or 8 + 12 = n → <strong>n = 20</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 7: BINOMIAL THEOREM
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch7">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 07</div>
+      <div class="chapter-title">Binomial Theorem</div>
+      <div class="chapter-meta">Expected Marks: 6–10 | Difficulty: ★★☆</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Key Formulas</h4>
+      <div class="formula-grid">
+        <div class="formula-item">(a+b)ⁿ = Σ nCr · aⁿ⁻ʳ · bʳ, r=0 to n</div>
+        <div class="formula-item">General term: Tᵣ₊₁ = nCr · aⁿ⁻ʳ · bʳ</div>
+        <div class="formula-item">Middle term: if n even → T(n/2+1)</div>
+        <div class="formula-item">Middle term: if n odd → T((n+1)/2) and T((n+3)/2)</div>
+        <div class="formula-item">Sum of coefficients: put a=b=1 → 2ⁿ</div>
+        <div class="formula-item">(1+x)ⁿ expansion at x=1 → 2ⁿ</div>
+      </div>
+    </div>
+
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the 5th term in the expansion of (2x − 3y)⁷.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Tᵣ₊₁ = ⁷Cᵣ · (2x)⁷⁻ʳ · (−3y)ʳ<br>For 5th term: r = 4</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">T₅ = ⁷C₄ · (2x)³ · (−3y)⁴</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">⁷C₄ = 35<br>= 35 × 8x³ × 81y⁴ = <strong>22680 x³y⁴</strong></span></div>
+            <div class="result-box">T₅ = 22680 x³y⁴</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the middle term in the expansion of (x + 1/x)⁸.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">n=8 (even), middle term = T(n/2 + 1) = T₅</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">T₅ = ⁸C₄ · x⁴ · (1/x)⁴ = 70 · x⁴ · x⁻⁴ = 70 · 1</span></div>
+            <div class="result-box">Middle term = 70 (constant)</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 8: COORDINATE GEOMETRY
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch8">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 08</div>
+      <div class="chapter-title">Coordinate Geometry</div>
+      <div class="chapter-meta">Expected Marks: 14–18 | Difficulty: ★★★</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Key Formulas</h4>
+      <div class="formula-grid">
+        <div class="formula-item">Distance: √[(x₂−x₁)²+(y₂−y₁)²]</div>
+        <div class="formula-item">Mid-point: ((x₁+x₂)/2, (y₁+y₂)/2)</div>
+        <div class="formula-item">Slope m = (y₂−y₁)/(x₂−x₁)</div>
+        <div class="formula-item">Line: y = mx+c (slope-intercept)</div>
+        <div class="formula-item">Point-slope: y−y₁ = m(x−x₁)</div>
+        <div class="formula-item">Two-intercept: x/a + y/b = 1</div>
+        <div class="formula-item">Dist(point to line): |ax₁+by₁+c|/√(a²+b²)</div>
+        <div class="formula-item">Circle: (x−h)²+(y−k)²=r²</div>
+        <div class="formula-item">Parabola: y²=4ax; focus(a,0), directrix x=−a</div>
+        <div class="formula-item">Ellipse: x²/a²+y²/b²=1, a>b; c²=a²−b²</div>
+        <div class="formula-item">Hyperbola: x²/a²−y²/b²=1; c²=a²+b²</div>
+      </div>
+    </div>
+
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the equation of line passing through (2,3) and (−1,5).<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">m = (5−3)/(−1−2) = 2/(−3) = −2/3</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">y−3 = (−2/3)(x−2)<br>3(y−3) = −2(x−2)<br>3y−9 = −2x+4</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">2x + 3y = 13</span></div>
+            <div class="result-box">2x + 3y − 13 = 0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the distance from point (3, 4) to the line 3x − 4y + 5 = 0.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">d = |3(3) − 4(4) + 5| / √(3²+4²)</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">= |9 − 16 + 5| / √25 = |−2| / 5 = 2/5</span></div>
+            <div class="result-box">Distance = 2/5 units</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the centre and radius of the circle: x² + y² − 6x + 4y − 3 = 0<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Complete the square:<br>(x²−6x+9) + (y²+4y+4) = 3+9+4</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">(x−3)² + (y+2)² = 16</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">Centre = (3, −2), Radius = √16 = 4</span></div>
+            <div class="result-box">Centre (3, −2), Radius = 4</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the focus, directrix, and latus rectum of the parabola y² = 12x.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">y²=12x → y²=4(3)x → a=3</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">Focus = (a, 0) = <strong>(3, 0)</strong></span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">Directrix: x = −a = <strong>x = −3</strong></span></div>
+            <div class="step"><span class="step-num">4</span><span class="step-content">Length of Latus Rectum = 4a = <strong>12</strong></span></div>
+            <div class="result-box">Focus: (3,0) | Directrix: x=−3 | LR length: 12</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 9: LIMITS & CONTINUITY
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch9">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 09</div>
+      <div class="chapter-title">Limits &amp; Continuity</div>
+      <div class="chapter-meta">Expected Marks: 8–12 | Difficulty: ★★☆</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Standard Limits</h4>
+      <div class="formula-grid">
+        <div class="formula-item">lim(x→0) sinx/x = 1</div>
+        <div class="formula-item">lim(x→0) tanx/x = 1</div>
+        <div class="formula-item">lim(x→0) (1+x)^(1/x) = e</div>
+        <div class="formula-item">lim(x→a) (xⁿ−aⁿ)/(x−a) = naⁿ⁻¹</div>
+        <div class="formula-item">lim(x→0) (eˣ−1)/x = 1</div>
+        <div class="formula-item">lim(x→0) log(1+x)/x = 1</div>
+        <div class="formula-item">Continuity at a: f(a) = lim(x→a) f(x)</div>
+      </div>
+    </div>
+
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Evaluate: lim(x→2) (x³ − 8)/(x − 2)<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Direct substitution gives 0/0 — use formula or factor</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">lim(x→a) (xⁿ−aⁿ)/(x−a) = naⁿ⁻¹<br>Here n=3, a=2: = 3×2² = <strong>12</strong></span></div>
+            <div class="step"><span class="step-num">Alt</span><span class="step-content">Factor: x³−8 = (x−2)(x²+2x+4)<br>lim = x²+2x+4 at x=2 = 4+4+4 = 12 ✓</span></div>
+            <div class="result-box">Limit = 12</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Evaluate: lim(x→0) sin(3x)/x<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">2M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">lim(x→0) sin(3x)/x = lim × (3/3) = 3 × lim(x→0) sin(3x)/(3x)</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">= 3 × 1 = <strong>3</strong></span></div>
+            <div class="result-box">Limit = 3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-theory">THEORY</span>
+          <div class="q-text">State the conditions for continuity of f(x) at x = a. Is f(x) = |x| continuous at x = 0?</div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Answer</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Answer</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">Cond.</span><span class="step-content">1) f(a) is defined &nbsp;&nbsp; 2) lim(x→a) f(x) exists &nbsp;&nbsp; 3) lim(x→a) f(x) = f(a)</span></div>
+            <div class="step"><span class="step-num">Check</span><span class="step-content">For f(x)=|x| at x=0:<br>f(0) = 0 ✓<br>LHL = lim(x→0⁻) (−x) = 0<br>RHL = lim(x→0⁺) x = 0<br>LHL = RHL = f(0) = 0</span></div>
+            <div class="result-box">f(x) = |x| is continuous at x = 0</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 10: DIFFERENTIATION
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch10">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 10</div>
+      <div class="chapter-title">Differentiation</div>
+      <div class="chapter-meta">Expected Marks: 14–20 | Difficulty: ★★★ — Highest Scoring</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Derivatives to Memorize</h4>
+      <div class="formula-grid">
+        <div class="formula-item">d/dx(xⁿ) = nxⁿ⁻¹</div>
+        <div class="formula-item">d/dx(eˣ) = eˣ</div>
+        <div class="formula-item">d/dx(aˣ) = aˣ·ln(a)</div>
+        <div class="formula-item">d/dx(ln x) = 1/x</div>
+        <div class="formula-item">d/dx(sinx) = cosx</div>
+        <div class="formula-item">d/dx(cosx) = −sinx</div>
+        <div class="formula-item">d/dx(tanx) = sec²x</div>
+        <div class="formula-item">d/dx(sin⁻¹x) = 1/√(1−x²)</div>
+        <div class="formula-item">d/dx(cos⁻¹x) = −1/√(1−x²)</div>
+        <div class="formula-item">d/dx(tan⁻¹x) = 1/(1+x²)</div>
+        <div class="formula-item">Product: (uv)' = u'v + uv'</div>
+        <div class="formula-item">Quotient: (u/v)' = (u'v − uv')/v²</div>
+        <div class="formula-item">Chain: d/dx[f(g(x))] = f'(g(x))·g'(x)</div>
+      </div>
+    </div>
+
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Differentiate: y = x³ · eˣ<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution (Product Rule)</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">u = x³, v = eˣ, u' = 3x², v' = eˣ</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">dy/dx = u'v + uv' = 3x²·eˣ + x³·eˣ = eˣ(3x² + x³)</span></div>
+            <div class="result-box">dy/dx = x²eˣ(3 + x)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Differentiate: y = sin(x²+1)<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution (Chain Rule)</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Outer function: sin(u), inner: u = x²+1</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">dy/dx = cos(x²+1) · d/dx(x²+1) = cos(x²+1) · 2x</span></div>
+            <div class="result-box">dy/dx = 2x·cos(x²+1)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">If y = x²·sin(x), find dy/dx.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Product Rule: dy/dx = 2x·sinx + x²·cosx</span></div>
+            <div class="result-box">dy/dx = 2x sinx + x² cosx</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-long">LONG</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the equation of the tangent and normal to the curve y = x³ − 2x + 1 at the point (1, 0).<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">6M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">dy/dx = 3x² − 2</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">At (1,0): slope of tangent m = 3(1)²−2 = 1</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">Tangent: y−0 = 1(x−1) → <strong>y = x−1</strong></span></div>
+            <div class="step"><span class="step-num">4</span><span class="step-content">Slope of normal = −1/m = −1<br>Normal: y−0 = −1(x−1) → <strong>y = −x+1</strong></span></div>
+            <div class="result-box">Tangent: y = x−1 | Normal: y = −x+1</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-long">LONG</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the local maxima and minima of f(x) = 2x³ − 3x² − 12x + 4.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">6M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">f'(x) = 6x² − 6x − 12 = 6(x²−x−2) = 6(x−2)(x+1)<br>Critical points: x = 2, x = −1</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">f''(x) = 12x − 6</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">At x=2: f''(2)=18>0 → <strong>Local Minimum</strong><br>f(2) = 16−12−24+4 = −16</span></div>
+            <div class="step"><span class="step-num">4</span><span class="step-content">At x=−1: f''(−1)=−18<0 → <strong>Local Maximum</strong><br>f(−1) = −2−3+12+4 = 11</span></div>
+            <div class="result-box">Local Max: 11 at x=−1 | Local Min: −16 at x=2</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 11: INTEGRATION
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch11">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 11</div>
+      <div class="chapter-title">Integration</div>
+      <div class="chapter-meta">Expected Marks: 16–22 | Difficulty: ★★★ — Highest Marks</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Standard Integrals</h4>
+      <div class="formula-grid">
+        <div class="formula-item">∫xⁿ dx = xⁿ⁺¹/(n+1) + C</div>
+        <div class="formula-item">∫eˣ dx = eˣ + C</div>
+        <div class="formula-item">∫(1/x) dx = ln|x| + C</div>
+        <div class="formula-item">∫sinx dx = −cosx + C</div>
+        <div class="formula-item">∫cosx dx = sinx + C</div>
+        <div class="formula-item">∫sec²x dx = tanx + C</div>
+        <div class="formula-item">∫cosec²x dx = −cotx + C</div>
+        <div class="formula-item">∫secx·tanx dx = secx + C</div>
+        <div class="formula-item">∫1/√(1−x²) dx = sin⁻¹x + C</div>
+        <div class="formula-item">∫1/(1+x²) dx = tan⁻¹x + C</div>
+        <div class="formula-item">∫1/(x²−a²) dx = (1/2a)ln|(x−a)/(x+a)| + C</div>
+        <div class="formula-item">∫√(a²−x²) dx = (x/2)√(a²−x²) + (a²/2)sin⁻¹(x/a) + C</div>
+      </div>
+    </div>
+
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Evaluate: ∫(3x² + 2x − 5) dx<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">∫3x² dx + ∫2x dx − ∫5 dx = x³ + x² − 5x + C</span></div>
+            <div class="result-box">x³ + x² − 5x + C</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Evaluate: ∫ x·eˣ dx (Integration by Parts)<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution (ILATE Rule)</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">ILATE: u = x (Algebraic), dv = eˣ dx<br>du = dx, v = eˣ</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">∫x·eˣ dx = x·eˣ − ∫eˣ dx = xeˣ − eˣ + C</span></div>
+            <div class="result-box">∫x·eˣ dx = eˣ(x−1) + C</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Evaluate: ∫ sin(2x+3) dx<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">2M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution (Substitution)</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Let t = 2x+3, dt = 2dx → dx = dt/2</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">= (1/2)∫sin(t) dt = (1/2)(−cos(t)) + C = −cos(2x+3)/2 + C</span></div>
+            <div class="result-box">−cos(2x+3)/2 + C</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Evaluate the definite integral: ∫₀² (x² + 1) dx<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">∫(x²+1)dx = x³/3 + x</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">[x³/3 + x]₀² = (8/3 + 2) − (0) = 8/3 + 6/3 = 14/3</span></div>
+            <div class="result-box">14/3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the area enclosed between y = x² and y = x using integration.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">6M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Intersection: x² = x → x²−x = 0 → x(x−1)=0 → x=0,1</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">For 0≤x≤1: y=x is above y=x²<br>Area = ∫₀¹ (x − x²) dx</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">= [x²/2 − x³/3]₀¹ = (1/2 − 1/3) = 3/6 − 2/6 = 1/6</span></div>
+            <div class="result-box">Area = 1/6 sq. units</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Evaluate: ∫ x/(x²+1) dx<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Let t = x²+1, dt = 2x dx → x dx = dt/2</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">= (1/2)∫(1/t) dt = (1/2)ln|t| + C = (1/2)ln(x²+1) + C</span></div>
+            <div class="result-box">(1/2)ln(x²+1) + C</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 12: PROBABILITY
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch12">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 12</div>
+      <div class="chapter-title">Probability</div>
+      <div class="chapter-meta">Expected Marks: 8–12 | Difficulty: ★★☆</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Key Formulas</h4>
+      <div class="formula-grid">
+        <div class="formula-item">P(A) = n(A)/n(S)</div>
+        <div class="formula-item">P(A∪B) = P(A)+P(B)−P(A∩B)</div>
+        <div class="formula-item">P(A') = 1 − P(A)</div>
+        <div class="formula-item">Independent: P(A∩B) = P(A)·P(B)</div>
+        <div class="formula-item">Conditional: P(A|B) = P(A∩B)/P(B)</div>
+        <div class="formula-item">Bayes': P(Aᵢ|B) = P(B|Aᵢ)P(Aᵢ)/ΣP(B|Aⱼ)P(Aⱼ)</div>
+        <div class="formula-item">Binomial: P(X=r) = nCr·pʳ·qⁿ⁻ʳ</div>
+      </div>
+    </div>
+
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">A card is drawn from a pack of 52 cards. Find the probability that it is (i) a king, (ii) a red card, (iii) a face card.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">i</span><span class="step-content">P(King) = 4/52 = <strong>1/13</strong></span></div>
+            <div class="step"><span class="step-num">ii</span><span class="step-content">P(Red card) = 26/52 = <strong>1/2</strong></span></div>
+            <div class="step"><span class="step-num">iii</span><span class="step-content">Face cards = J,Q,K in each of 4 suits = 12<br>P(Face) = 12/52 = <strong>3/13</strong></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Two dice are thrown. Find the probability that the sum is (i) 7, (ii) even, (iii) greater than 9.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">4M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">n(S) = 36</span></div>
+            <div class="step"><span class="step-num">i</span><span class="step-content">Sum=7: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) → 6 outcomes<br>P = 6/36 = <strong>1/6</strong></span></div>
+            <div class="step"><span class="step-num">ii</span><span class="step-content">Even sums: 18 outcomes → P = 18/36 = <strong>1/2</strong></span></div>
+            <div class="step"><span class="step-num">iii</span><span class="step-content">Sum>9: (4,6),(5,5),(5,6),(6,4),(6,5),(6,6) → 6<br>P = 6/36 = <strong>1/6</strong></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">In a class, 30% students pass in Maths, 20% in English, and 10% in both. Find the probability that a student passes in at least one subject.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">P(M)=0.3, P(E)=0.2, P(M∩E)=0.1</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">P(M∪E) = 0.3+0.2−0.1 = <strong>0.4</strong></span></div>
+            <div class="result-box">Probability = 0.4 = 40%</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 13: STATISTICS
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch13">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 13</div>
+      <div class="chapter-title">Statistics</div>
+      <div class="chapter-meta">Expected Marks: 8–12 | Difficulty: ★★☆</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Key Formulas</h4>
+      <div class="formula-grid">
+        <div class="formula-item">Mean x̄ = Σfx/Σf</div>
+        <div class="formula-item">Median: l + [(N/2−F)/f]×h</div>
+        <div class="formula-item">Mode: l + [(f₁−f₀)/(2f₁−f₀−f₂)]×h</div>
+        <div class="formula-item">Variance σ² = Σf(x−x̄)²/N</div>
+        <div class="formula-item">SD σ = √Variance</div>
+        <div class="formula-item">CV = (σ/x̄)×100</div>
+        <div class="formula-item">Correlation r = Σ(x−x̄)(y−ȳ)/√[Σ(x−x̄)²·Σ(y−ȳ)²]</div>
+      </div>
+    </div>
+
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-num">NUM</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Find the mean, variance and standard deviation for: 6, 7, 10, 12, 13, 4, 8, 12.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">5M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">n=8, Σx = 6+7+10+12+13+4+8+12 = 72<br>Mean x̄ = 72/8 = <strong>9</strong></span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">Deviations (x−9): −3,−2,1,3,4,−5,−1,3<br>(x−9)²: 9,4,1,9,16,25,1,9</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">Σ(x−x̄)² = 74<br>Variance = 74/8 = <strong>9.25</strong></span></div>
+            <div class="step"><span class="step-num">4</span><span class="step-content">SD = √9.25 ≈ <strong>3.04</strong></span></div>
+            <div class="result-box">Mean=9, Variance=9.25, SD≈3.04</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHAPTER 14: LINEAR PROGRAMMING
+  ══════════════════════════════════════════ -->
+  <section class="chapter" id="ch14">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 14</div>
+      <div class="chapter-title">Linear Programming</div>
+      <div class="chapter-meta">Expected Marks: 6–10 | Difficulty: ★★☆</div>
+    </div>
+
+    <div class="formula-box">
+      <h4>⚡ Key Concepts</h4>
+      <div class="formula-grid">
+        <div class="formula-item">Objective function: Z = ax + by (to maximize/minimize)</div>
+        <div class="formula-item">Constraints: linear inequalities</div>
+        <div class="formula-item">Feasible region: common region satisfying all constraints</div>
+        <div class="formula-item">Corner point method: optimal value at vertex of feasible region</div>
+        <div class="formula-item">If unbounded: check if optimal exists</div>
+      </div>
+    </div>
+
+    <div class="questions-grid">
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-long">LONG</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Maximize Z = 5x + 3y subject to: 3x + 5y ≤ 15, 5x + 2y ≤ 10, x ≥ 0, y ≥ 0.<span class="pyq-label">PYQ</span></div>
+          <span class="q-marks">6M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Solution</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Solution</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">1</span><span class="step-content">Find corner points of feasible region:<br>Line 1: 3x+5y=15 → intercepts (5,0) and (0,3)<br>Line 2: 5x+2y=10 → intercepts (2,0) and (0,5)</span></div>
+            <div class="step"><span class="step-num">2</span><span class="step-content">Intersection of the two lines:<br>From 5x+2y=10: y=(10−5x)/2<br>Sub in 3x+5(10−5x)/2=15 → 6x+50−25x=30 → −19x=−20 → x=20/19<br>y=(10−100/19)/2 = (90/19)/2 = 45/19</span></div>
+            <div class="step"><span class="step-num">3</span><span class="step-content">Corner points: O(0,0), A(2,0), B(20/19,45/19), C(0,3)</span></div>
+            <div class="step"><span class="step-num">4</span><span class="step-content">Z at O = 0<br>Z at A = 5(2)+0 = 10<br>Z at B = 5(20/19)+3(45/19) = 100/19+135/19 = 235/19 ≈ 12.37<br>Z at C = 5(0)+3(3) = 9</span></div>
+            <div class="result-box">Maximum Z ≈ 235/19 at x=20/19, y=45/19</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card hot">
+        <div class="q-header" onclick="toggle(this)">
+          <span class="q-type-badge badge-theory">THEORY</span>
+          <span class="hot-star">⭐</span>
+          <div class="q-text">Define (i) Feasible solution (ii) Optimal solution (iii) Objective function in Linear Programming.</div>
+          <span class="q-marks">3M</span>
+        </div>
+        <div class="q-toggle" onclick="toggle(this.previousElementSibling)">▶ Show Answer</div>
+        <div class="q-answer">
+          <div class="answer-label">✓ Answer</div>
+          <div class="answer-text">
+            <div class="step"><span class="step-num">i</span><span class="step-content"><b>Feasible Solution:</b> Any (x,y) satisfying all constraints including non-negativity conditions.</span></div>
+            <div class="step"><span class="step-num">ii</span><span class="step-content"><b>Optimal Solution:</b> The feasible solution that maximizes (or minimizes) the objective function.</span></div>
+            <div class="step"><span class="step-num">iii</span><span class="step-content"><b>Objective Function:</b> A linear function Z = ax+by whose value we want to optimize (maximize or minimize).</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
 
 <script>
-function tog(el){el.closest('.card').classList.toggle('open');}
-document.addEventListener('keydown',e=>{
-  if(e.key==='e'||e.key==='E') document.querySelectorAll('.card').forEach(c=>c.classList.add('open'));
-  if(e.key==='c'||e.key==='C') document.querySelectorAll('.card').forEach(c=>c.classList.remove('open'));
-});
+  // Toggle answer visibility
+  function toggle(el) {
+    // Find the answer div
+    let card = el.closest('.q-card');
+    let answer = card.querySelector('.q-answer');
+    let toggleBtn = card.querySelector('.q-toggle');
+    if (answer.classList.contains('show')) {
+      answer.classList.remove('show');
+      if(toggleBtn) toggleBtn.textContent = toggleBtn.textContent.replace('▼','▶').replace('Hide','Show');
+    } else {
+      answer.classList.add('show');
+      if(toggleBtn) toggleBtn.textContent = toggleBtn.textContent.replace('▶','▼').replace('Show','Hide');
+    }
+  }
+
+  // Active nav highlighting
+  const sections = document.querySelectorAll('section.chapter');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(l => {
+      l.classList.remove('active');
+      if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+    });
+  });
+
+  // Make entire q-header area clickable
+  document.querySelectorAll('.q-header').forEach(h => {
+    h.style.cursor = 'pointer';
+  });
 </script>
 </body>
 </html>
